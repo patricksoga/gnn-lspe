@@ -7,7 +7,6 @@ class PELayer(nn.Module):
         self.device = net_params['device']
         self.pos_enc_dim = net_params.get('pos_enc_dim', 0)
         self.dataset = net_params.get('dataset', 'CYCLES')
-        self.cat = net_params.get('cat_gape', False)
         self.n_gape = net_params.get('n_gape', 1)
         self.gape_pooling = net_params.get('gape_pooling', 'mean')
         self.matrix_type = net_params.get('matrix_type', 'A')
@@ -62,8 +61,7 @@ class PELayer(nn.Module):
 
         if self.n_gape > 1:
             pos_encs = [g.ndata[f'pos_enc_{i}'] for i in range(self.n_gape)]
-            # if not self.cat:
-            #     pos_encs = [self.embedding_pos_encs[i](pos_encs[i]) for i in range(self.n_gape)]
+            # pos_encs = [self.embedding_pos_encs[i](pos_encs[i]) for i in range(self.n_gape)]
             pos_enc_block = torch.stack(pos_encs, dim=0) # (n_gape, n_nodes, pos_enc_dim)
             # pos_enc_block = self.embedding_pos_enc(pos_enc_block) # (n_gape, n_nodes, hidden_dim)
             # count how many nans are in pos_enc_block
@@ -75,6 +73,6 @@ class PELayer(nn.Module):
                 pos_enc_block = torch.max(pos_enc_block, 0, keepdim=False)[0]
             pe = pos_enc_block
         else:
-            pe = self.embedding_pos_encs[0](g.ndata['pos_enc_0'])
+            pe = self.embedding_pos_encs[0](pos_enc)
 
         return pe
