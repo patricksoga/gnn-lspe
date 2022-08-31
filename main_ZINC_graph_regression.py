@@ -95,6 +95,10 @@ def view_model_param(MODEL_NAME, net_params):
 def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
     t0 = time.time()
     per_epoch_time = []
+    model = gnn_model(MODEL_NAME, net_params)
+    device = net_params['device']
+    model = model.to(device)
+
         
     DATASET_NAME = dataset.name
 
@@ -117,9 +121,9 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
         print(f"[!] Adding random automaton graph positional encoding ({net_params['pos_enc_dim']}).")
         if net_params.get('n_gape', 1) > 1:
             print(f"[!] Using {net_params.get('n_gape', 1)} random automata.")
-            dataset = add_multiple_automaton_encodings(dataset, model.pe_layer.pos_transitions, model.pe_layer.pos_initials, net_params['diag'], net_params['matrix_type'])
+            dataset = add_multiple_automaton_encodings(dataset, model.gape_pe_layer.pos_transitions, model.gape_pe_layer.pos_initials, net_params['diag'], net_params['matrix_type'])
         else:
-            dataset = add_automaton_encodings(dataset, model.pe_layer.pos_transitions[0], model.pe_layer.pos_initials[0], net_params['diag'], net_params['matrix_type'])
+            dataset = add_automaton_encodings(dataset, model.gape_pe_layer.pos_transitions[0], model.gape_pe_layer.pos_initials[0], net_params['diag'], net_params['matrix_type'])
             print(f'Time PE:{time.time()-t0}')
         
     if MODEL_NAME in ['SAN', 'GraphiT']:
@@ -132,7 +136,6 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
     trainset, valset, testset = dataset.train, dataset.val, dataset.test
         
     root_log_dir, root_ckpt_dir, write_file_name, write_config_file, viz_dir = dirs
-    device = net_params['device']
     
     # Write the network and optimization hyper-parameters in folder config/
     with open(write_config_file + '.txt', 'w') as f:
@@ -155,9 +158,6 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
     print("Validation Graphs: ", len(valset))
     print("Test Graphs: ", len(testset))
 
-    model = gnn_model(MODEL_NAME, net_params)
-    model = model.to(device)
-
     optimizer = optim.Adam(model.parameters(), lr=params['init_lr'], weight_decay=params['weight_decay'])
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
                                                      factor=params['lr_reduce_factor'],
@@ -176,64 +176,63 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
     
     # At any point you can hit Ctrl + C to break out of training early.
     try:
-        with tqdm(range(params['epochs'])) as t:
-            for epoch in t:
+        for epoch in range(params['epochs']):
 
-                t.set_description('Epoch %d' % epoch)
+            start = time.time()
 
-                start = time.time()
+            epoch_train_loss, epoch_train_mae, optimizer = train_epoch(model, optimizer, device, train_loader, epoch)
+                
+            epoch_val_loss, epoch_val_mae, __ = evaluate_network(model, device, val_loader, epoch)
+            epoch_test_loss, epoch_test_mae, __ = evaluate_network(model, device, test_loader, epoch)
+            del __
+            
+            epoch_train_losses.append(epoch_train_loss)
+            epoch_val_losses.append(epoch_val_loss)
+            epoch_train_MAEs.append(epoch_train_mae)
+            epoch_val_MAEs.append(epoch_val_mae)
 
-                epoch_train_loss, epoch_train_mae, optimizer = train_epoch(model, optimizer, device, train_loader, epoch)
+            writer.add_scalar('train/_loss', epoch_train_loss, epoch)
+            writer.add_scalar('val/_loss', epoch_val_loss, epoch)
+            writer.add_scalar('train/_mae', epoch_train_mae, epoch)
+            writer.add_scalar('val/_mae', epoch_val_mae, epoch)
+            writer.add_scalar('test/_mae', epoch_test_mae, epoch)
+            writer.add_scalar('learning_rate', optimizer.param_groups[0]['lr'], epoch)
+
                     
-                epoch_val_loss, epoch_val_mae, __ = evaluate_network(model, device, val_loader, epoch)
-                epoch_test_loss, epoch_test_mae, __ = evaluate_network(model, device, test_loader, epoch)
-                del __
-                
-                epoch_train_losses.append(epoch_train_loss)
-                epoch_val_losses.append(epoch_val_loss)
-                epoch_train_MAEs.append(epoch_train_mae)
-                epoch_val_MAEs.append(epoch_val_mae)
+            t.set_postfix(time=time.time()-start, lr=optimizer.param_groups[0]['lr'],
+                            train_loss=epoch_train_loss, val_loss=epoch_val_loss,
+                            train_MAE=epoch_train_mae, val_MAE=epoch_val_mae,
+                            test_MAE=epoch_test_mae)
 
-                writer.add_scalar('train/_loss', epoch_train_loss, epoch)
-                writer.add_scalar('val/_loss', epoch_val_loss, epoch)
-                writer.add_scalar('train/_mae', epoch_train_mae, epoch)
-                writer.add_scalar('val/_mae', epoch_val_mae, epoch)
-                writer.add_scalar('test/_mae', epoch_test_mae, epoch)
-                writer.add_scalar('learning_rate', optimizer.param_groups[0]['lr'], epoch)
+            # print the results
+            print(f"Epoch [{epoch}] Train Loss: {epoch_train_loss:.4f} | Train MAE: {epoch_train_mae:.4f} | Val Loss: {epoch_val_loss:.4f} | Val MAE: {epoch_val_mae:.4f} | Test MAE: {epoch_test_mae:.4f} | Time: {time.time()-start:.4f}")
 
-                        
-                t.set_postfix(time=time.time()-start, lr=optimizer.param_groups[0]['lr'],
-                              train_loss=epoch_train_loss, val_loss=epoch_val_loss,
-                              train_MAE=epoch_train_mae, val_MAE=epoch_val_mae,
-                              test_MAE=epoch_test_mae)
+            per_epoch_time.append(time.time()-start)
 
+            # Saving checkpoint
+            ckpt_dir = os.path.join(root_ckpt_dir, "RUN_")
+            if not os.path.exists(ckpt_dir):
+                os.makedirs(ckpt_dir)
+            torch.save(model.state_dict(), '{}.pkl'.format(ckpt_dir + "/epoch_" + str(epoch)))
 
-                per_epoch_time.append(time.time()-start)
+            files = glob.glob(ckpt_dir + '/*.pkl')
+            for file in files:
+                epoch_nb = file.split('_')[-1]
+                epoch_nb = int(epoch_nb.split('.')[0])
+                if epoch_nb < epoch-1:
+                    os.remove(file)
 
-                # Saving checkpoint
-                ckpt_dir = os.path.join(root_ckpt_dir, "RUN_")
-                if not os.path.exists(ckpt_dir):
-                    os.makedirs(ckpt_dir)
-                torch.save(model.state_dict(), '{}.pkl'.format(ckpt_dir + "/epoch_" + str(epoch)))
+            scheduler.step(epoch_val_loss)
 
-                files = glob.glob(ckpt_dir + '/*.pkl')
-                for file in files:
-                    epoch_nb = file.split('_')[-1]
-                    epoch_nb = int(epoch_nb.split('.')[0])
-                    if epoch_nb < epoch-1:
-                        os.remove(file)
-
-                scheduler.step(epoch_val_loss)
-
-                if optimizer.param_groups[0]['lr'] < params['min_lr']:
-                    print("\n!! LR EQUAL TO MIN LR SET.")
-                    break
-                
-                # Stop training after params['max_time'] hours
-                if time.time()-t0 > params['max_time']*3600:
-                    print('-' * 89)
-                    print("Max_time for training elapsed {:.2f} hours, so stopping".format(params['max_time']))
-                    break
+            if optimizer.param_groups[0]['lr'] < params['min_lr']:
+                print("\n!! LR EQUAL TO MIN LR SET.")
+                break
+            
+            # Stop training after params['max_time'] hours
+            if time.time()-t0 > params['max_time']*3600:
+                print('-' * 89)
+                print("Max_time for training elapsed {:.2f} hours, so stopping".format(params['max_time']))
+                break
                 
     except KeyboardInterrupt:
         print('-' * 89)
