@@ -198,12 +198,6 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
             writer.add_scalar('test/_mae', epoch_test_mae, epoch)
             writer.add_scalar('learning_rate', optimizer.param_groups[0]['lr'], epoch)
 
-                    
-            t.set_postfix(time=time.time()-start, lr=optimizer.param_groups[0]['lr'],
-                            train_loss=epoch_train_loss, val_loss=epoch_val_loss,
-                            train_MAE=epoch_train_mae, val_MAE=epoch_val_mae,
-                            test_MAE=epoch_test_mae)
-
             # print the results
             print(f"Epoch [{epoch}] Train Loss: {epoch_train_loss:.4f} | Train MAE: {epoch_train_mae:.4f} | Val Loss: {epoch_val_loss:.4f} | Val MAE: {epoch_val_mae:.4f} | Test MAE: {epoch_test_mae:.4f} | Time: {time.time()-start:.4f}")
 
