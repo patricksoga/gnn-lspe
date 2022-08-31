@@ -54,7 +54,7 @@ class GatedGCNNet(nn.Module):
         
         self.in_feat_dropout = nn.Dropout(in_feat_dropout)
         
-        if self.pe_init == 'rand_walk':
+        if self.pe_init in ('rand_walk', 'gape'):
             # LSPE
             self.layers = nn.ModuleList([ GatedGCNLSPELayer(hidden_dim, hidden_dim, dropout,
                                                         self.batch_norm, residual=self.residual) for _ in range(self.n_layers-1) ]) 
@@ -67,7 +67,7 @@ class GatedGCNNet(nn.Module):
         
         self.MLP_layer = MLPReadout(out_dim, 1)   # 1 out dim since regression problem        
 
-        if self.pe_init == 'rand_walk':
+        if self.pe_init in ('rand_walk', 'gape'):
             self.p_out = nn.Linear(out_dim, self.pos_enc_dim)
             self.Whp = nn.Linear(out_dim+self.pos_enc_dim, out_dim)
         
