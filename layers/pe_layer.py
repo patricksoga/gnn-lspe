@@ -75,6 +75,6 @@ class PELayer(nn.Module):
                 pos_enc_block = torch.max(pos_enc_block, 0, keepdim=False)[0]
             pe = pos_enc_block
         else:
-            pe = self.embedding_pos_encs[0](pe)
+            pe = self.embedding_pos_encs[0](f'pos_enc_0')
 
         return pe
