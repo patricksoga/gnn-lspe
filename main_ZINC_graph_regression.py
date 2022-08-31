@@ -333,6 +333,7 @@ def main():
     parser.add_argument('--pe_init', help="Please give a value for pe_init")
     parser.add_argument('--n_gape', help="Please give a value for n_gape")
     parser.add_argument('--job_num')
+    parser.add_argument('--log_file')
     args = parser.parse_args()
     with open(args.config) as f:
         config = json.load(f)
