@@ -55,13 +55,13 @@ class SANNet(nn.Module):
         if self.pe_init == 'gape':
             self.gape_pe_layer = PELayer(net_params)
         
-        if self.pe_init in ['rand_walk']:
+        if self.pe_init in ['rand_walk', 'gape']:
             self.embedding_p = nn.Linear(self.pos_enc_dim, GT_hidden_dim)
         
         self.embedding_h = nn.Embedding(num_atom_type, GT_hidden_dim)
         self.embedding_e = nn.Embedding(num_bond_type, GT_hidden_dim)
         
-        if self.pe_init == 'rand_walk':
+        if self.pe_init in ('rand_walk', 'gape'):
             # LSPE
             self.layers = nn.ModuleList([ SAN_GT_LSPE_Layer(self.gamma, GT_hidden_dim, GT_hidden_dim, GT_n_heads, full_graph,
                                                                 dropout, self.layer_norm, self.batch_norm, self.residual) for _ in range(GT_layers-1) ])
