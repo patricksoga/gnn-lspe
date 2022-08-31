@@ -6,6 +6,7 @@ import dgl
 import numpy as np
 
 from scipy import sparse as sp
+from layers.pe_layer import PELayer
 
 """
     SAN-GT and SAN-GT-LSPE
@@ -51,6 +52,8 @@ class SANNet(nn.Module):
         self.alpha_loss = net_params['alpha_loss']
         
         self.pos_enc_dim = net_params['pos_enc_dim']
+        if self.pe_init == 'gape':
+            self.gape_pe_layer = PELayer(net_params)
         
         if self.pe_init in ['rand_walk']:
             self.embedding_p = nn.Linear(self.pos_enc_dim, GT_hidden_dim)
@@ -87,8 +90,11 @@ class SANNet(nn.Module):
         e = self.embedding_e(e)  
         
         h = self.in_feat_dropout(h)
-        
-        if self.pe_init in ['rand_walk']:
+
+        if self.pe_init == 'gape':
+            p = self.gape_pe_layer(g, p)
+
+        if self.pe_init in ['rand_walk', 'gape']:
             p = self.embedding_p(p) 
         
         # GNN
@@ -96,7 +102,7 @@ class SANNet(nn.Module):
             h, p = conv(g, h, p, e, snorm_n)
         g.ndata['h'] = h
         
-        if self.pe_init == 'rand_walk':
+        if self.pe_init in ('rand_walk', 'gape'):
             p = self.p_out(p)
             g.ndata['p'] = p
         
