@@ -86,7 +86,7 @@ class GatedGCNNet(nn.Module):
         if self.pe_init in ['rand_walk', 'lap_pe']:
             p = self.embedding_p(p) 
 
-        if self.pe_init in ('lap_pe', 'gape'):
+        if self.pe_init in ('lap_pe'):
             h = h + p
             p = None
         
