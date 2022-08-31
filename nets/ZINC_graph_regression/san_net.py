@@ -106,7 +106,7 @@ class SANNet(nn.Module):
             p = self.p_out(p)
             g.ndata['p'] = p
         
-        if self.use_lapeig_loss and self.pe_init == 'rand_walk':
+        if self.use_lapeig_loss and self.pe_init in ('rand_walk', 'gape'):
             # Implementing p_g = p_g - torch.mean(p_g, dim=0)
             means = dgl.mean_nodes(g, 'p')
             batch_wise_p_means = means.repeat_interleave(g.batch_num_nodes(), 0)
@@ -121,7 +121,7 @@ class SANNet(nn.Module):
             p = p / batch_wise_p_l2_norms
             g.ndata['p'] = p
         
-        if self.pe_init == 'rand_walk':
+        if self.pe_init in ('rand_walk', 'gape'):
             # Concat h and p
             hp = self.Whp(torch.cat((g.ndata['h'],g.ndata['p']),dim=-1))
             g.ndata['h'] = hp
