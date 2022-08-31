@@ -10,7 +10,7 @@ touch $fname
 fsync -d 10 $fname &
 
 conda activate gnn
-cd /afs/crc.nd.edu/user/p/psoga/benchmarking-gnns
+cd /afs/crc.nd.edu/user/p/psoga/gnn-lspe
 
 python3 main_ZINC_graph_regression.py --config tests/test-configs/PNA_ZINC_lspe-ngape1.json --job_num ${SGE_TASK_ID} --pos_enc_dim ${pos_enc_dim[${SGE_TASK_ID}]} --log_file $fname
 
