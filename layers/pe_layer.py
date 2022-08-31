@@ -5,8 +5,6 @@ class PELayer(nn.Module):
     def __init__(self, net_params):
         super().__init__()
         self.device = net_params['device']
-        self.learned_pos_enc = net_params.get('learned_pos_enc', False)
-        self.rand_pos_enc = net_params.get('rand_pos_enc', False)
         self.pos_enc_dim = net_params.get('pos_enc_dim', 0)
         self.dataset = net_params.get('dataset', 'CYCLES')
         self.cat = net_params.get('cat_gape', False)
@@ -21,7 +19,7 @@ class PELayer(nn.Module):
 
         # init initial vectors
         self.pos_initials = nn.ParameterList(
-            nn.Parameter(torch.empty(self.pos_enc_dim, 1, device=self.device), requires_grad=not self.rand_pos_enc)
+            nn.Parameter(torch.empty(self.pos_enc_dim, 1, device=self.device), requires_grad=False)
             for _ in range(self.n_gape)
         )
         for pos_initial in self.pos_initials:
@@ -29,7 +27,7 @@ class PELayer(nn.Module):
 
         # init transition weights
         self.pos_transitions = nn.ParameterList(
-            nn.Parameter(torch.Tensor(self.pos_enc_dim, self.pos_enc_dim), requires_grad=not self.rand_pos_enc)
+            nn.Parameter(torch.Tensor(self.pos_enc_dim, self.pos_enc_dim), requires_grad=False)
             for _ in range(self.n_gape)
         )
         for pos_transition in self.pos_transitions:
