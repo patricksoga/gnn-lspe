@@ -57,9 +57,9 @@ class PELayer(nn.Module):
         return out
 
     def forward(self, g, pos_enc=None):
-        pe = pos_enc
-
-        if self.n_gape > 1:
+        if self.n_gape == 1 and pos_enc is not None:
+            return pos_enc
+        else:
             pos_encs = [g.ndata[f'pos_enc_{i}'] for i in range(self.n_gape)]
             # pos_encs = [self.embedding_pos_encs[i](pos_encs[i]) for i in range(self.n_gape)]
             pos_enc_block = torch.stack(pos_encs, dim=0) # (n_gape, n_nodes, pos_enc_dim)
@@ -72,7 +72,5 @@ class PELayer(nn.Module):
             elif self.gape_pooling == 'max':
                 pos_enc_block = torch.max(pos_enc_block, 0, keepdim=False)[0]
             pe = pos_enc_block
-        else:
-            pe = self.embedding_pos_encs[0](pos_enc)
 
         return pe

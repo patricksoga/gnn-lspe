@@ -81,10 +81,7 @@ class GatedGCNNet(nn.Module):
         h = self.in_feat_dropout(h)
         
         if self.pe_init == 'gape':
-            try:
-                p = self.gape_pe_layer(g)
-            except:
-                pass
+            p = self.gape_pe_layer(g)
 
         if self.pe_init in ['rand_walk', 'lap_pe', 'gape']:
             p = self.embedding_p(p) 
