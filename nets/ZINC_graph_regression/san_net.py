@@ -76,7 +76,7 @@ class SANNet(nn.Module):
         
         self.MLP_layer = MLPReadout(GT_out_dim, 1)   # 1 out dim since regression problem        
         
-        if self.pe_init == 'rand_walk':
+        if self.pe_init in ('rand_walk', 'gape'):
             self.p_out = nn.Linear(GT_out_dim, self.pos_enc_dim)
             self.Whp = nn.Linear(GT_out_dim+self.pos_enc_dim, GT_out_dim)
         
