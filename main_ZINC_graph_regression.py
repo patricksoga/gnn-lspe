@@ -121,9 +121,9 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
         print(f"[!] Adding random automaton graph positional encoding ({net_params['pos_enc_dim']}).")
         if net_params.get('n_gape', 1) > 1:
             print(f"[!] Using {net_params.get('n_gape', 1)} random automata.")
-            dataset = add_multiple_automaton_encodings(dataset, model.gape_pe_layer.pos_transitions, model.gape_pe_layer.pos_initials, net_params['diag'], net_params['matrix_type'])
+            dataset = add_multiple_automaton_encodings(dataset, model.gape_pe_layer.pos_transitions, model.gape_pe_layer.pos_initials)
         else:
-            dataset = add_automaton_encodings(dataset, model.gape_pe_layer.pos_transitions[0], model.gape_pe_layer.pos_initials[0], net_params['diag'], net_params['matrix_type'])
+            dataset = add_automaton_encodings(dataset, model.gape_pe_layer.pos_transitions[0], model.gape_pe_layer.pos_initials[0])
             print(f'Time PE:{time.time()-t0}')
         
     if MODEL_NAME in ['SAN', 'GraphiT']:
