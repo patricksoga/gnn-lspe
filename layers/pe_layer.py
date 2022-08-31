@@ -62,8 +62,8 @@ class PELayer(nn.Module):
 
         if self.n_gape > 1:
             pos_encs = [g.ndata[f'pos_enc_{i}'] for i in range(self.n_gape)]
-            if not self.cat:
-                pos_encs = [self.embedding_pos_encs[i](pos_encs[i]) for i in range(self.n_gape)]
+            # if not self.cat:
+            #     pos_encs = [self.embedding_pos_encs[i](pos_encs[i]) for i in range(self.n_gape)]
             pos_enc_block = torch.stack(pos_encs, dim=0) # (n_gape, n_nodes, pos_enc_dim)
             # pos_enc_block = self.embedding_pos_enc(pos_enc_block) # (n_gape, n_nodes, hidden_dim)
             # count how many nans are in pos_enc_block

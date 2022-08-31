@@ -83,7 +83,7 @@ class GatedGCNNet(nn.Module):
         if self.pe_init == 'gape':
             p = self.gape_pe_layer(g)
 
-        if self.pe_init in ['rand_walk', 'lap_pe']:
+        if self.pe_init in ['rand_walk', 'lap_pe', 'gape']:
             p = self.embedding_p(p) 
 
         if self.pe_init in ('lap_pe'):
