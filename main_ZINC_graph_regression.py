@@ -29,6 +29,7 @@ from tqdm import tqdm
 
 import matplotlib
 import matplotlib.pyplot as plt
+from data.gape_preprocess import add_automaton_encodings, add_multiple_automaton_encodings
 
 
 class DotDict(dict):
@@ -96,7 +97,7 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
     per_epoch_time = []
         
     DATASET_NAME = dataset.name
-    
+
     if net_params['pe_init'] == 'lap_pe':
         tt = time.time()
         print("[!] -LapPE: Initializing graph positional encoding with Laplacian PE.")
@@ -112,6 +113,19 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
         print("[!] -LSPE (For viz later): Adding lapeigvecs to key 'eigvec' for every graph.")
         dataset._add_eig_vecs(net_params['pos_enc_dim'])
         print("[!] Time taken: ", time.time()-tt)
+    elif net_params['pe_init'] == 'gape':
+        if net_params.get('rand_pos_enc', False):
+            # try:
+            #     logger.info(f"[!] Loading random automaton graph positional encoding ({model.pe_layer.pos_enc_dim}).")
+            #     dataset = load_encodings(dataset, net_params['pos_enc_dim'])
+            # except:
+            print(f"[!] Adding random automaton graph positional encoding ({net_params['pos_enc_dim']}).")
+            if net_params.get('n_gape', 1) > 1:
+                print(f"[!] Using {net_params.get('n_gape', 1)} random automata.")
+                dataset = add_multiple_automaton_encodings(dataset, model.pe_layer.pos_transitions, model.pe_layer.pos_initials, net_params['diag'], net_params['matrix_type'])
+            else:
+                dataset = add_automaton_encodings(dataset, model.pe_layer.pos_transitions[0], model.pe_layer.pos_initials[0], net_params['diag'], net_params['matrix_type'])
+                print(f'Time PE:{time.time()-t0}')
         
     if MODEL_NAME in ['SAN', 'GraphiT']:
         if net_params['full_graph']:

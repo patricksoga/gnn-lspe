@@ -5,7 +5,9 @@ import torch.nn.functional as F
 import dgl
 
 from scipy import sparse as sp
-from scipy.sparse.linalg import norm 
+from scipy.sparse.linalg import norm
+
+from layers.pe_layer import PELayer 
 
 """
     GatedGCN and GatedGCN-LSPE
@@ -37,8 +39,10 @@ class GatedGCNNet(nn.Module):
         self.alpha_loss = net_params['alpha_loss']
         
         self.pos_enc_dim = net_params['pos_enc_dim']
+        if self.pe_init == 'gape':
+            self.gape_pe_layer = PELayer(net_params)
         
-        if self.pe_init in ['rand_walk', 'lap_pe']:
+        if self.pe_init in ['rand_walk', 'lap_pe', 'gape']:
             self.embedding_p = nn.Linear(self.pos_enc_dim, hidden_dim)
 
         self.embedding_h = nn.Embedding(num_atom_type, hidden_dim)
@@ -70,16 +74,19 @@ class GatedGCNNet(nn.Module):
         self.g = None              # For util; To be accessed in loss() function
 
         
-    def forward(self, g, h, p, e, snorm_n):
+    def forward(self, g, h, p, e, snorm_n, pos_encs):
 
         # input embedding
         h = self.embedding_h(h)
         h = self.in_feat_dropout(h)
         
+        if self.pe_init == 'gape':
+            p = self.gape_pe_layer(g)
+
         if self.pe_init in ['rand_walk', 'lap_pe']:
             p = self.embedding_p(p) 
-            
-        if self.pe_init == 'lap_pe':
+
+        if self.pe_init in ('lap_pe', 'gape'):
             h = h + p
             p = None
         
