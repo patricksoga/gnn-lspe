@@ -57,7 +57,7 @@ class PELayer(nn.Module):
             out = torch.cat([out, remaining_stack], dim=1)
         return out
 
-    def forward(self, g, h, pos_enc=None):
+    def forward(self, g, pos_enc=None):
         pe = pos_enc
 
         if self.n_gape > 1:
