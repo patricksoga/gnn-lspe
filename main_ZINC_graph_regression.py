@@ -331,6 +331,7 @@ def main():
     parser.add_argument('--alpha_loss', help="Please give a value for alpha_loss")
     parser.add_argument('--lambda_loss', help="Please give a value for lambda_loss")
     parser.add_argument('--pe_init', help="Please give a value for pe_init")
+    parser.add_argument('--n_gape', help="Please give a value for n_gape")
     args = parser.parse_args()
     with open(args.config) as f:
         config = json.load(f)
@@ -411,6 +412,8 @@ def main():
         net_params['lambda_loss'] = float(args.lambda_loss)
     if args.pe_init is not None:
         net_params['pe_init'] = args.pe_init
+    if args.n_gape is not None:
+        net_params['n_gape'] = int(args.n_gape)
         
     
     # ZINC
