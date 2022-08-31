@@ -12,7 +12,7 @@ touch $fname
 fsync -d 10 $fname &
 
 conda activate gnn
-cd /afs/crc.nd.edu/user/p/psoga/benchmarking-gnns
+cd /afs/crc.nd.edu/user/p/psoga/gnn-lspe
 
 {command}
 """
