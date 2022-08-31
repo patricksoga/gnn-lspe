@@ -54,7 +54,7 @@ def pre_run_boilerplate(args):
 fsync -d 10 $fname &
 
 conda activate gnn
-cd /afs/crc.nd.edu/user/p/psoga/benchmarking-gnns
+cd /afs/crc.nd.edu/user/p/psoga/gnn-lspe
 
 """
     return debug_file + "\n" + rest
