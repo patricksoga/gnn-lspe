@@ -90,6 +90,9 @@ class GatedGCNNet(nn.Module):
             h = h + p
             p = None
         
+        if self.pe_init in ('gape'):
+            h = h + p
+        
         if not self.edge_feat: # edge feature set to 1
             e = torch.ones(e.size(0),1).to(self.device)
         e = self.embedding_e(e)   
