@@ -101,7 +101,7 @@ class GatedGCNNet(nn.Module):
             
         g.ndata['h'] = h
         
-        if self.pe_init == 'rand_walk':
+        if self.pe_init in ('rand_walk', 'gape'):
             # Implementing p_g = p_g - torch.mean(p_g, dim=0)
             p = self.p_out(p)
             g.ndata['p'] = p
