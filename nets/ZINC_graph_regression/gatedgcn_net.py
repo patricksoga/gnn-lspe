@@ -74,7 +74,7 @@ class GatedGCNNet(nn.Module):
         self.g = None              # For util; To be accessed in loss() function
 
         
-    def forward(self, g, h, p, e, snorm_n, pos_encs):
+    def forward(self, g, h, p, e, snorm_n):
 
         # input embedding
         h = self.embedding_h(h)
