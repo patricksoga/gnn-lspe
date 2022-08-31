@@ -2,7 +2,7 @@
 #$ -N LSPE-gape-b128-1
 #$ -q gpu
 #$ -l gpu_card=1
-#$ -t 1-2:1
+#$ -t 1-3:1
 
 pos_enc_dim=(0 6 10 12)
 fname=$(pwd)/b128-bnorm-alt-edge_${SGE_TASK_ID}_${pos_enc_dim[${SGE_TASK_ID}]}_DEBUG.log
