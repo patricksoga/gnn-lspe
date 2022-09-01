@@ -1,0 +1,29 @@
+WARNING:root:The OGB package is out of date. Your version is 1.3.3, while the latest version is 1.3.4.
+INFO:__main__:{'seed': 41, 'epochs': 1000, 'batch_size': 128, 'init_lr': 0.001, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0.0, 'print_epoch_interval': 5, 'max_time': 12}
+INFO:__main__:{'L': 16, 'hidden_dim': 59, 'out_dim': 59, 'residual': True, 'edge_feat': True, 'readout': 'mean', 'in_feat_dropout': 0.0, 'dropout': 0.0, 'batch_norm': True, 'pos_enc_dim': 16, 'pe_init': 'gape', 'use_lapeig_loss': False, 'alpha_loss': 0.0001, 'lambda_loss': 1, 'gpu_id': 0, 'batch_size': 128, 'n_gape': 3, 'gape_pooling': 'sum', 'device': device(type='cuda'), 'log_file': '/afs/crc.nd.edu/user/p/psoga/gnn-lspe/tests/ZINC/GatedGCN/gape/gatedgcn_lspe_gapen3/16_DEBUG.log', 'num_atom_type': 28, 'num_bond_type': 4}
+INFO:__main__:Total number of parameters: 525983
+INFO:__main__:[!] Adding random automaton graph positional encoding (16).
+INFO:__main__:[!] Using 3 random automata.
+INFO:__main__:Training Graphs: 10000
+INFO:__main__:Validation Graphs: 10000
+INFO:__main__:Test Graphs: 10000
+cuda available with GPU: NVIDIA GeForce GTX 1080 Ti
+[I] Loading dataset ZINC...
+train, test, val sizes : 10000 1000 1000
+[I] Finished loading.
+[I] Data load time: 10.2908s
+Using 3 automata for GAPE
+MODEL DETAILS:
+
+MODEL/Total parameters: GatedGCN 525983
+Using 3 automata for GAPE
+INFO:__main__:Epoch [0] Train Loss: 2.1420 | Train MAE: 2.1420 | Val Loss: 1.5627 | Val MAE: 1.5627 | Test MAE: 1.6907 | Time: 14.1122
+INFO:__main__:Epoch [1] Train Loss: 1.7545 | Train MAE: 1.7545 | Val Loss: 1.6214 | Val MAE: 1.6214 | Test MAE: 1.7655 | Time: 13.7502
+INFO:__main__:Epoch [2] Train Loss: 1.7287 | Train MAE: 1.7287 | Val Loss: 1.6296 | Val MAE: 1.6296 | Test MAE: 1.7940 | Time: 15.5156
+INFO:__main__:Epoch [3] Train Loss: 1.7092 | Train MAE: 1.7092 | Val Loss: 1.5295 | Val MAE: 1.5295 | Test MAE: 1.6724 | Time: 13.7346
+INFO:__main__:Epoch [4] Train Loss: 1.6252 | Train MAE: 1.6252 | Val Loss: 1.5433 | Val MAE: 1.5433 | Test MAE: 1.6957 | Time: 13.4668
+INFO:__main__:Epoch [5] Train Loss: 1.5590 | Train MAE: 1.5590 | Val Loss: 1.5097 | Val MAE: 1.5097 | Test MAE: 1.6526 | Time: 13.9467
+INFO:__main__:Epoch [6] Train Loss: 1.5704 | Train MAE: 1.5704 | Val Loss: 1.4407 | Val MAE: 1.4407 | Test MAE: 1.5763 | Time: 13.5821
+INFO:__main__:Epoch [7] Train Loss: 1.5276 | Train MAE: 1.5276 | Val Loss: 1.5433 | Val MAE: 1.5433 | Test MAE: 1.6788 | Time: 13.8401
+INFO:__main__:Epoch [8] Train Loss: 1.5173 | Train MAE: 1.5173 | Val Loss: 1.4524 | Val MAE: 1.4524 | Test MAE: 1.5753 | Time: 15.6008
+INFO:__main__:Epoch [9] Train Loss: 1.5426 | Train MAE: 1.5426 | Val Loss: 1.5127 | Val MAE: 1.5127 | Test MAE: 1.6555 | Time: 13.8896
