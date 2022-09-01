@@ -1,0 +1,20 @@
+2022-08-31 21:45:37,320:main_ZINC_graph_regression.py:443 -                 main(): {'seed': 41, 'epochs': 1000, 'batch_size': 128, 'init_lr': 0.001, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0.0, 'print_epoch_interval': 5, 'max_time': 12}
+2022-08-31 21:45:37,321:main_ZINC_graph_regression.py:444 -                 main(): {'L': 16, 'hidden_dim': 59, 'out_dim': 59, 'residual': True, 'edge_feat': True, 'readout': 'mean', 'in_feat_dropout': 0.0, 'dropout': 0.0, 'batch_norm': True, 'pos_enc_dim': 8, 'pe_init': 'gape', 'use_lapeig_loss': False, 'alpha_loss': 0.0001, 'lambda_loss': 1, 'gpu_id': 0, 'batch_size': 128, 'device': device(type='cuda'), 'log_file': '/afs/crc.nd.edu/user/p/psoga/gnn-lspe/tests/ZINC/GatedGCN/gape/gatedgcn_lspe_gape/8_DEBUG.log', 'num_atom_type': 28, 'num_bond_type': 4}
+2022-08-31 21:45:38,754:main_ZINC_graph_regression.py:135 -   train_val_pipeline(): [!] Adding random automaton graph positional encoding (8).
+2022-08-31 21:45:50,076:main_ZINC_graph_regression.py:141 -   train_val_pipeline(): Time PE:11.354551315307617
+2022-08-31 21:45:50,082:main_ZINC_graph_regression.py:171 -   train_val_pipeline(): Training Graphs: 10000
+2022-08-31 21:45:50,082:main_ZINC_graph_regression.py:172 -   train_val_pipeline(): Validation Graphs: 10000
+2022-08-31 21:45:50,082:main_ZINC_graph_regression.py:173 -   train_val_pipeline(): Test Graphs: 10000
+2022-08-31 21:46:03,919:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [0] Train Loss: 4.7868 | Train MAE: 4.7868 | Val Loss: 4.5852 | Val MAE: 4.5852 | Test MAE: 3.6693 | Time: 13.8329
+2022-08-31 21:46:17,865:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [1] Train Loss: 3.5788 | Train MAE: 3.5788 | Val Loss: 2.7887 | Val MAE: 2.7887 | Test MAE: 3.0251 | Time: 13.8945
+2022-08-31 21:46:32,012:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [2] Train Loss: 2.5670 | Train MAE: 2.5670 | Val Loss: 2.5316 | Val MAE: 2.5316 | Test MAE: 2.7342 | Time: 14.0949
+2022-08-31 21:46:45,706:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [3] Train Loss: 2.1484 | Train MAE: 2.1484 | Val Loss: 1.8873 | Val MAE: 1.8873 | Test MAE: 2.0208 | Time: 13.6343
+2022-08-31 21:46:59,704:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [4] Train Loss: 2.0155 | Train MAE: 2.0155 | Val Loss: 2.3965 | Val MAE: 2.3965 | Test MAE: 2.5688 | Time: 13.9469
+2022-08-31 21:47:13,361:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [5] Train Loss: 1.8756 | Train MAE: 1.8756 | Val Loss: 1.5913 | Val MAE: 1.5913 | Test MAE: 1.6956 | Time: 13.6049
+2022-08-31 21:47:27,266:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [6] Train Loss: 1.8582 | Train MAE: 1.8582 | Val Loss: 1.6531 | Val MAE: 1.6531 | Test MAE: 1.7733 | Time: 13.8541
+2022-08-31 21:47:40,705:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [7] Train Loss: 1.6683 | Train MAE: 1.6683 | Val Loss: 1.6729 | Val MAE: 1.6729 | Test MAE: 1.7751 | Time: 13.3893
+2022-08-31 21:47:54,915:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [8] Train Loss: 1.6835 | Train MAE: 1.6835 | Val Loss: 1.6815 | Val MAE: 1.6815 | Test MAE: 1.7959 | Time: 14.1530
+2022-08-31 21:48:08,514:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [9] Train Loss: 1.6115 | Train MAE: 1.6115 | Val Loss: 1.4571 | Val MAE: 1.4571 | Test MAE: 1.5760 | Time: 13.5420
+2022-08-31 21:48:23,160:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [10] Train Loss: 1.5544 | Train MAE: 1.5544 | Val Loss: 1.5836 | Val MAE: 1.5836 | Test MAE: 1.6744 | Time: 14.5765
+2022-08-31 21:48:36,927:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [11] Train Loss: 1.6002 | Train MAE: 1.6002 | Val Loss: 1.5263 | Val MAE: 1.5263 | Test MAE: 1.6402 | Time: 13.7135
+2022-08-31 21:48:51,139:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [12] Train Loss: 1.5467 | Train MAE: 1.5467 | Val Loss: 1.4808 | Val MAE: 1.4808 | Test MAE: 1.5601 | Time: 14.1383
