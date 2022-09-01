@@ -62,13 +62,14 @@ def automaton_encoding(g, transition_matrix, initial_vector, diag=False, matrix=
         N = sp.diags(dgl.backend.asnumpy(g.in_degrees()), dtype=float)
         mat = (A + N).todense()
 
-    if idx == 0:
-        initial_vector = torch.cat([initial_vector for _ in range(mat.shape[0])], dim=1)
-    else:
-        pi = torch.zeros(initial_vector.shape[0], g.number_of_nodes())
-        index = random.randint(0, g.number_of_nodes()-1)
-        pi[:, index] = initial_vector.squeeze(1)
-        initial_vector = pi
+    initial_vector = torch.cat([initial_vector for _ in range(mat.shape[0])], dim=1)
+    # if idx == 0:
+    #     initial_vector = torch.cat([initial_vector for _ in range(mat.shape[0])], dim=1)
+    # else:
+    #     pi = torch.zeros(initial_vector.shape[0], g.number_of_nodes())
+    #     index = random.randint(0, g.number_of_nodes()-1)
+    #     pi[:, index] = initial_vector.squeeze(1)
+    #     initial_vector = pi
 
     if diag:
         mat_product = torch.einsum('ij, i->ij', initial_vector, transition_inv).cpu().numpy()
