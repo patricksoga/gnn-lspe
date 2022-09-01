@@ -373,9 +373,6 @@ def main():
         out_dir = config['out_dir']
     # parameters
 
-    global logger
-    logger = get_logger(net_params['log_file'])
-
     params = config['params']
     if args.seed is not None:
         params['seed'] = int(args.seed)
@@ -439,6 +436,11 @@ def main():
     # ZINC
     net_params['num_atom_type'] = dataset.num_atom_type
     net_params['num_bond_type'] = dataset.num_bond_type
+
+    global logger
+    logger = get_logger(net_params['log_file'])
+    logger.info(params)
+    logger.info(net_params)
 
     if MODEL_NAME == 'PNA':
         D = torch.cat([torch.sparse.sum(g.adjacency_matrix(transpose=True), dim=-1).to_dense() for g in
