@@ -64,3 +64,10 @@
 2022-08-31 22:06:05,502:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [55] Train Loss: 1.1087 | Train MAE: 1.1087 | Val Loss: 1.1444 | Val MAE: 1.1444 | Test MAE: 1.2266 | Time: 13.8321
 2022-08-31 22:06:19,732:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [56] Train Loss: 1.1231 | Train MAE: 1.1231 | Val Loss: 0.9591 | Val MAE: 0.9591 | Test MAE: 1.0695 | Time: 14.1795
 2022-08-31 22:06:33,107:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [57] Train Loss: 0.9728 | Train MAE: 0.9728 | Val Loss: 0.9140 | Val MAE: 0.9140 | Test MAE: 0.9946 | Time: 13.3131
+2022-08-31 22:06:47,008:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [58] Train Loss: 0.9262 | Train MAE: 0.9262 | Val Loss: 0.8863 | Val MAE: 0.8863 | Test MAE: 0.9724 | Time: 13.8485
+2022-08-31 22:07:02,121:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [59] Train Loss: 0.9168 | Train MAE: 0.9168 | Val Loss: 0.8638 | Val MAE: 0.8638 | Test MAE: 0.9625 | Time: 15.0621
+2022-08-31 22:07:17,464:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [60] Train Loss: 0.9284 | Train MAE: 0.9284 | Val Loss: 0.9493 | Val MAE: 0.9493 | Test MAE: 1.0613 | Time: 15.2855
+2022-08-31 22:07:30,310:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [61] Train Loss: 1.2438 | Train MAE: 1.2438 | Val Loss: 1.2458 | Val MAE: 1.2458 | Test MAE: 1.3792 | Time: 12.7850
+2022-08-31 22:07:43,666:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [62] Train Loss: 1.0544 | Train MAE: 1.0544 | Val Loss: 0.8758 | Val MAE: 0.8758 | Test MAE: 1.0021 | Time: 13.2925
+2022-08-31 22:07:58,732:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [63] Train Loss: 0.9831 | Train MAE: 0.9831 | Val Loss: 1.3069 | Val MAE: 1.3069 | Test MAE: 1.4479 | Time: 15.0056
+2022-08-31 22:08:11,964:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [64] Train Loss: 0.9885 | Train MAE: 0.9885 | Val Loss: 0.8921 | Val MAE: 0.8921 | Test MAE: 0.9755 | Time: 13.1769
