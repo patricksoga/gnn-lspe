@@ -256,7 +256,7 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs, logger):
     logger.info("AVG TIME PER EPOCH: {:.4f}s".format(np.mean(per_epoch_time)))
     
     
-    if net_params['pe_init'] == 'rand_walk':
+    if net_params['pe_init'] in ('rand_walk', 'gape'):
         # Visualize actual and predicted/learned eigenvecs
         from utils.plot_util import plot_graph_eigvec
         if not os.path.exists(viz_dir):
