@@ -431,7 +431,8 @@ def main():
         net_params['pe_init'] = args.pe_init
     if args.n_gape is not None:
         net_params['n_gape'] = int(args.n_gape)
-        
+    if args.log_file is not None:
+        net_params['log_file'] = args.log_file
     
     # ZINC
     net_params['num_atom_type'] = dataset.num_atom_type
