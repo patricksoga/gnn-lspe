@@ -3,6 +3,7 @@ import torch.nn as nn
 import dgl
 from scipy import sparse as sp
 from scipy.sparse.linalg import norm
+from layers.pe_layer import PELayer
 
 
 """
@@ -60,7 +61,9 @@ class PNANet(nn.Module):
         if self.edge_feat:
             self.embedding_e = nn.Embedding(num_bond_type, edge_dim)
             
-        
+        if self.pe_init == 'gape':
+            self.gape_pe_layer = PELayer(net_params)
+
         if self.pe_init in ('rand_walk', 'gape'):
             # LSPE
             self.layers = nn.ModuleList([PNALSPELayer(in_dim=hidden_dim, out_dim=hidden_dim, dropout=dropout,
