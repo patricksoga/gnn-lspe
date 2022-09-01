@@ -2,3 +2,9 @@
 2022-08-31 21:53:09,187:main_ZINC_graph_regression.py:444 -                 main(): {'L': 16, 'hidden_dim': 59, 'out_dim': 59, 'residual': True, 'edge_feat': True, 'readout': 'mean', 'in_feat_dropout': 0.0, 'dropout': 0.0, 'batch_norm': True, 'pos_enc_dim': 128, 'pe_init': 'gape', 'use_lapeig_loss': False, 'alpha_loss': 0.0001, 'lambda_loss': 1, 'gpu_id': 0, 'batch_size': 128, 'device': device(type='cuda'), 'log_file': '/afs/crc.nd.edu/user/p/psoga/gnn-lspe/tests/ZINC/GatedGCN/gape/gatedgcn_lspe_gape/128_DEBUG.log', 'num_atom_type': 28, 'num_bond_type': 4}
 2022-08-31 21:53:10,465:main_ZINC_graph_regression.py:467 -                 main(): Total number of parameters: 566217
 2022-08-31 21:53:10,497:main_ZINC_graph_regression.py:135 -   train_val_pipeline(): [!] Adding random automaton graph positional encoding (128).
+2022-08-31 21:54:53,092:main_ZINC_graph_regression.py:141 -   train_val_pipeline(): Time PE:102.6260313987732
+2022-08-31 21:54:53,099:main_ZINC_graph_regression.py:171 -   train_val_pipeline(): Training Graphs: 10000
+2022-08-31 21:54:53,099:main_ZINC_graph_regression.py:172 -   train_val_pipeline(): Validation Graphs: 10000
+2022-08-31 21:54:53,099:main_ZINC_graph_regression.py:173 -   train_val_pipeline(): Test Graphs: 10000
+2022-08-31 21:55:06,843:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [0] Train Loss: 1.7819 | Train MAE: 1.7819 | Val Loss: 1.4538 | Val MAE: 1.4538 | Test MAE: 1.5541 | Time: 13.7393
+2022-08-31 21:55:20,593:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [1] Train Loss: 1.4892 | Train MAE: 1.4892 | Val Loss: 1.4816 | Val MAE: 1.4816 | Test MAE: 1.6124 | Time: 13.6876
