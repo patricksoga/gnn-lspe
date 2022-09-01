@@ -101,3 +101,16 @@
 2022-08-31 22:14:19,958:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [92] Train Loss: 0.9109 | Train MAE: 0.9109 | Val Loss: 0.8953 | Val MAE: 0.8953 | Test MAE: 0.9909 | Time: 13.8797
 2022-08-31 22:14:32,989:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [93] Train Loss: 0.8596 | Train MAE: 0.8596 | Val Loss: 0.8165 | Val MAE: 0.8165 | Test MAE: 0.8866 | Time: 12.9770
 2022-08-31 22:14:46,361:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [94] Train Loss: 0.8472 | Train MAE: 0.8472 | Val Loss: 0.8105 | Val MAE: 0.8105 | Test MAE: 0.8757 | Time: 13.3189
+2022-08-31 22:14:59,581:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [95] Train Loss: 0.8605 | Train MAE: 0.8605 | Val Loss: 0.8312 | Val MAE: 0.8312 | Test MAE: 0.9422 | Time: 13.1662
+2022-08-31 22:15:12,838:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [96] Train Loss: 0.8566 | Train MAE: 0.8566 | Val Loss: 0.8493 | Val MAE: 0.8493 | Test MAE: 0.9270 | Time: 13.2030
+2022-08-31 22:15:25,438:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [97] Train Loss: 0.8577 | Train MAE: 0.8577 | Val Loss: 0.8095 | Val MAE: 0.8095 | Test MAE: 0.8818 | Time: 12.5429
+2022-08-31 22:15:38,497:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [98] Train Loss: 0.8353 | Train MAE: 0.8353 | Val Loss: 0.8174 | Val MAE: 0.8174 | Test MAE: 0.9083 | Time: 12.9944
+2022-08-31 22:15:51,371:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [99] Train Loss: 0.8455 | Train MAE: 0.8455 | Val Loss: 0.8161 | Val MAE: 0.8161 | Test MAE: 0.9108 | Time: 12.8221
+2022-08-31 22:16:06,513:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [100] Train Loss: 0.8467 | Train MAE: 0.8467 | Val Loss: 0.8198 | Val MAE: 0.8198 | Test MAE: 0.8841 | Time: 15.0895
+2022-08-31 22:16:19,098:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [101] Train Loss: 0.8404 | Train MAE: 0.8404 | Val Loss: 0.9142 | Val MAE: 0.9142 | Test MAE: 0.9711 | Time: 12.5254
+2022-08-31 22:16:32,129:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [102] Train Loss: 0.8613 | Train MAE: 0.8613 | Val Loss: 0.8105 | Val MAE: 0.8105 | Test MAE: 0.9066 | Time: 12.9729
+2022-08-31 22:16:45,507:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [103] Train Loss: 0.8377 | Train MAE: 0.8377 | Val Loss: 0.8137 | Val MAE: 0.8137 | Test MAE: 0.8868 | Time: 13.3241
+2022-08-31 22:17:00,324:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [104] Train Loss: 0.8438 | Train MAE: 0.8438 | Val Loss: 0.8184 | Val MAE: 0.8184 | Test MAE: 0.8881 | Time: 14.7529
+2022-08-31 22:17:13,284:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [105] Train Loss: 0.8576 | Train MAE: 0.8576 | Val Loss: 0.8240 | Val MAE: 0.8240 | Test MAE: 0.9111 | Time: 12.9081
+2022-08-31 22:17:25,988:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [106] Train Loss: 0.8460 | Train MAE: 0.8460 | Val Loss: 0.8338 | Val MAE: 0.8338 | Test MAE: 0.9139 | Time: 12.6539
+2022-08-31 22:17:39,134:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [107] Train Loss: 1.2790 | Train MAE: 1.2790 | Val Loss: 1.7889 | Val MAE: 1.7889 | Test MAE: 1.9750 | Time: 13.0948
