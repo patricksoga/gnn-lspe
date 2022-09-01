@@ -112,7 +112,8 @@ class PNANet(nn.Module):
         
         if self.pe_init in ['rand_walk', 'gape']:
             p = self.embedding_p(p) 
-        
+            h = h + p
+
         if self.edge_feat:
             e = self.embedding_e(e)
 
