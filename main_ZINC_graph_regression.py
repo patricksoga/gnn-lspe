@@ -1,6 +1,20 @@
+import logging
 
+def get_logger(logfile=None):
+    _logfile = logfile if logfile else './DEBUG.log'
+    """Global logger for every logging"""
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+    formatter = logging.Formatter(
+        '%(asctime)s:%(filename)s:%(lineno)s - %(funcName)20s(): %(message)s')
 
+    if not logger.handlers:
+        debug_handler = logging.FileHandler(_logfile)
+        debug_handler.setFormatter(formatter)
+        debug_handler.setLevel(logging.DEBUG)
+        logger.addHandler(debug_handler)
 
+    return logger
 
 
 """
@@ -92,7 +106,7 @@ def view_model_param(MODEL_NAME, net_params):
     TRAINING CODE
 """
 
-def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
+def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs, logger):
     t0 = time.time()
     per_epoch_time = []
     model = gnn_model(MODEL_NAME, net_params)
@@ -104,34 +118,34 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
 
     if net_params['pe_init'] == 'lap_pe':
         tt = time.time()
-        print("[!] -LapPE: Initializing graph positional encoding with Laplacian PE.")
+        logger.info("[!] -LapPE: Initializing graph positional encoding with Laplacian PE.")
         dataset._add_lap_positional_encodings(net_params['pos_enc_dim'])
-        print("[!] Time taken: ", time.time()-tt)
+        logger.info("[!] Time taken: ", time.time()-tt)
     elif net_params['pe_init'] == 'rand_walk':
         tt = time.time()
-        print("[!] -LSPE: Initializing graph positional encoding with rand walk features.")
+        logger.info("[!] -LSPE: Initializing graph positional encoding with rand walk features.")
         dataset._init_positional_encodings(net_params['pos_enc_dim'], net_params['pe_init'])
-        print("[!] Time taken: ", time.time()-tt)
+        logger.info("[!] Time taken: ", time.time()-tt)
         
         tt = time.time()
-        print("[!] -LSPE (For viz later): Adding lapeigvecs to key 'eigvec' for every graph.")
+        logger.info("[!] -LSPE (For viz later): Adding lapeigvecs to key 'eigvec' for every graph.")
         dataset._add_eig_vecs(net_params['pos_enc_dim'])
-        print("[!] Time taken: ", time.time()-tt)
+        logger.info("[!] Time taken: ", time.time()-tt)
     elif net_params['pe_init'] == 'gape':
-        print(f"[!] Adding random automaton graph positional encoding ({net_params['pos_enc_dim']}).")
+        logger.info(f"[!] Adding random automaton graph positional encoding ({net_params['pos_enc_dim']}).")
         if net_params.get('n_gape', 1) > 1:
-            print(f"[!] Using {net_params.get('n_gape', 1)} random automata.")
+            logger.info(f"[!] Using {net_params.get('n_gape', 1)} random automata.")
             dataset = add_multiple_automaton_encodings(dataset, model.gape_pe_layer.pos_transitions, model.gape_pe_layer.pos_initials)
         else:
             dataset = add_automaton_encodings(dataset, model.gape_pe_layer.pos_transitions[0], model.gape_pe_layer.pos_initials[0])
-            print(f'Time PE:{time.time()-t0}')
+            logger.info(f'Time PE:{time.time()-t0}')
         
     if MODEL_NAME in ['SAN', 'GraphiT']:
         if net_params['full_graph']:
             st = time.time()
-            print("[!] Adding full graph connectivity..")
+            logger.info("[!] Adding full graph connectivity..")
             dataset._make_full_graph() if MODEL_NAME == 'SAN' else dataset._make_full_graph((net_params['p_steps'], net_params['gamma']))
-            print('Time taken to add full graph connectivity: ',time.time()-st)
+            logger.info('Time taken to add full graph connectivity: ',time.time()-st)
     
     trainset, valset, testset = dataset.train, dataset.val, dataset.test
         
@@ -154,9 +168,9 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
         torch.backends.cudnn.deterministic = True
         torch.backends.cudnn.benchmark = False
     
-    print("Training Graphs: ", len(trainset))
-    print("Validation Graphs: ", len(valset))
-    print("Test Graphs: ", len(testset))
+    logger.info(f"Training Graphs: {len(trainset)}", )
+    logger.info(f"Validation Graphs: {len(trainset)}", )
+    logger.info(f"Test Graphs: {len(trainset)}", )
 
     optimizer = optim.Adam(model.parameters(), lr=params['init_lr'], weight_decay=params['weight_decay'])
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min',
@@ -199,7 +213,7 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
             writer.add_scalar('learning_rate', optimizer.param_groups[0]['lr'], epoch)
 
             # print the results
-            print(f"Epoch [{epoch}] Train Loss: {epoch_train_loss:.4f} | Train MAE: {epoch_train_mae:.4f} | Val Loss: {epoch_val_loss:.4f} | Val MAE: {epoch_val_mae:.4f} | Test MAE: {epoch_test_mae:.4f} | Time: {time.time()-start:.4f}")
+            logger.info(f"Epoch [{epoch}] Train Loss: {epoch_train_loss:.4f} | Train MAE: {epoch_train_mae:.4f} | Val Loss: {epoch_val_loss:.4f} | Val MAE: {epoch_val_mae:.4f} | Test MAE: {epoch_test_mae:.4f} | Time: {time.time()-start:.4f}")
 
             per_epoch_time.append(time.time()-start)
 
@@ -219,27 +233,27 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
             scheduler.step(epoch_val_loss)
 
             if optimizer.param_groups[0]['lr'] < params['min_lr']:
-                print("\n!! LR EQUAL TO MIN LR SET.")
+                logger.info("\n!! LR EQUAL TO MIN LR SET.")
                 break
             
             # Stop training after params['max_time'] hours
             if time.time()-t0 > params['max_time']*3600:
-                print('-' * 89)
-                print("Max_time for training elapsed {:.2f} hours, so stopping".format(params['max_time']))
+                logger.info('-' * 89)
+                logger.info("Max_time for training elapsed {:.2f} hours, so stopping".format(params['max_time']))
                 break
                 
     except KeyboardInterrupt:
-        print('-' * 89)
-        print('Exiting from training early because of KeyboardInterrupt')
+        logger.info('-' * 89)
+        logger.info('Exiting from training early because of KeyboardInterrupt')
     
     test_loss_lapeig, test_mae, g_outs_test = evaluate_network(model, device, test_loader, epoch)
     train_loss_lapeig, train_mae, g_outs_train = evaluate_network(model, device, train_loader, epoch)
     
-    print("Test MAE: {:.4f}".format(test_mae))
-    print("Train MAE: {:.4f}".format(train_mae))
-    print("Convergence Time (Epochs): {:.4f}".format(epoch))
-    print("TOTAL TIME TAKEN: {:.4f}s".format(time.time()-t0))
-    print("AVG TIME PER EPOCH: {:.4f}s".format(np.mean(per_epoch_time)))
+    logger.info("Test MAE: {:.4f}".format(test_mae))
+    logger.info("Train MAE: {:.4f}".format(train_mae))
+    logger.info("Convergence Time (Epochs): {:.4f}".format(epoch))
+    logger.info("TOTAL TIME TAKEN: {:.4f}s".format(time.time()-t0))
+    logger.info("AVG TIME PER EPOCH: {:.4f}s".format(np.mean(per_epoch_time)))
     
     
     if net_params['pe_init'] == 'rand_walk':
@@ -358,6 +372,10 @@ def main():
     else:
         out_dir = config['out_dir']
     # parameters
+
+    global logger
+    logger = get_logger(net_params['log_file'])
+
     params = config['params']
     if args.seed is not None:
         params['seed'] = int(args.seed)
@@ -443,7 +461,7 @@ def main():
         os.makedirs(out_dir + 'configs')
 
     net_params['total_param'] = view_model_param(MODEL_NAME, net_params)
-    train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs)
+    train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs, logger)
 
     
     
