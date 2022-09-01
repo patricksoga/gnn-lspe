@@ -4,7 +4,7 @@
 #$ -l gpu_card=1
 #$ -t 1-4:1
 
-pos_enc_dim=(0 4 6 8 16)
+pos_enc_dim=(0 30 64 88 156)
 fname=$(pwd)/lspe-eigloss-ngape1-eq_${SGE_TASK_ID}_${pos_enc_dim[${SGE_TASK_ID}]}_DEBUG.log
 # touch $fname
 fsync -d 10 $fname &
