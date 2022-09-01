@@ -464,6 +464,7 @@ def main():
         os.makedirs(out_dir + 'configs')
 
     net_params['total_param'] = view_model_param(MODEL_NAME, net_params)
+    logger.info(f"Total number of parameters: {net_params['total_param']}")
     train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs, logger)
 
     
