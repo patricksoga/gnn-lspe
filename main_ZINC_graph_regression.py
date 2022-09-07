@@ -133,6 +133,7 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs, logger):
         logger.info("[!] Time taken: ", time.time()-tt)
     elif net_params['pe_init'] == 'gape':
         logger.info(f"[!] Adding random automaton graph positional encoding ({net_params['pos_enc_dim']}).")
+        logger.info(f"[!] Using matrix: {net_params['matrix_type']}")
         if net_params.get('n_gape', 1) > 1:
             logger.info(f"[!] Using {net_params.get('n_gape', 1)} random automata.")
             dataset = add_multiple_automaton_encodings(dataset, model.gape_pe_layer.pos_transitions, model.gape_pe_layer.pos_initials)
@@ -272,7 +273,7 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs, logger):
             f = plt.figure(f_idx, figsize=(12,6))
 
             plt1 = f.add_subplot(121)
-            plot_graph_eigvec(plt1, graph_id, g_dgl, feature_key='eigvec', actual_eigvecs=True)
+            plot_graph_eigvec(plt1, graph_id, g_dgl, feature_key='pos_enc', actual_eigvecs=True)
 
             plt2 = f.add_subplot(122)
             plot_graph_eigvec(plt2, graph_id, g_dgl, feature_key='p', predicted_eigvecs=True)
@@ -285,7 +286,7 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs, logger):
             f = plt.figure(f_idx, figsize=(12,6))
 
             plt1 = f.add_subplot(121)
-            plot_graph_eigvec(plt1, graph_id, g_dgl, feature_key='eigvec', actual_eigvecs=True)
+            plot_graph_eigvec(plt1, graph_id, g_dgl, feature_key='pos_enc', actual_eigvecs=True)
 
             plt2 = f.add_subplot(122)
             plot_graph_eigvec(plt2, graph_id, g_dgl, feature_key='p', predicted_eigvecs=True)
