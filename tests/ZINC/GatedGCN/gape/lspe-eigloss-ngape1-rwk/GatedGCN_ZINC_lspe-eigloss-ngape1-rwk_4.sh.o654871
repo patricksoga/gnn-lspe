@@ -1,0 +1,126 @@
+WARNING:root:The OGB package is out of date. Your version is 1.3.3, while the latest version is 1.3.4.
+INFO:__main__:{'seed': 41, 'epochs': 1000, 'batch_size': 128, 'init_lr': 0.001, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0.0, 'print_epoch_interval': 5, 'max_time': 12}
+INFO:__main__:{'L': 16, 'hidden_dim': 59, 'out_dim': 59, 'residual': True, 'edge_feat': True, 'readout': 'mean', 'in_feat_dropout': 0.0, 'dropout': 0.0, 'batch_norm': True, 'pos_enc_dim': 4, 'pe_init': 'gape', 'use_lapeig_loss': True, 'alpha_loss': 1, 'lambda_loss': 0.1, 'gpu_id': 0, 'batch_size': 128, 'n_gape': 1, 'gape_pooling': 'mean', 'matrix_type': 'RWK', 'device': device(type='cuda'), 'log_file': '/afs/crc.nd.edu/user/p/psoga/gnn-lspe/tests/ZINC/GatedGCN/gape/lspe-eigloss-ngape1-rwk/4_DEBUG.log', 'num_atom_type': 28, 'num_bond_type': 4}
+INFO:__main__:Total number of parameters: 520337
+INFO:__main__:[!] Adding random automaton graph positional encoding (4).
+INFO:__main__:Time PE:70.60713481903076
+INFO:__main__:Training Graphs: 10000
+INFO:__main__:Validation Graphs: 10000
+INFO:__main__:Test Graphs: 10000
+cuda available with GPU: NVIDIA GeForce GTX 1080 Ti
+[I] Loading dataset ZINC...
+train, test, val sizes : 10000 1000 1000
+[I] Finished loading.
+[I] Data load time: 10.7320s
+MODEL DETAILS:
+
+MODEL/Total parameters: GatedGCN 520337
+INFO:__main__:Epoch [0] Train Loss: 6363.7401 | Train MAE: 6363.7396 | Val Loss: 2639.9998 | Val MAE: 2639.9992 | Test MAE: 2639.0005 | Time: 23.0089
+INFO:__main__:Epoch [1] Train Loss: 2052.6336 | Train MAE: 2052.6330 | Val Loss: 1002.3754 | Val MAE: 1002.3749 | Test MAE: 1002.0556 | Time: 22.2629
+INFO:__main__:Epoch [2] Train Loss: 1784.7103 | Train MAE: 1784.7098 | Val Loss: 3135.0141 | Val MAE: 3135.0136 | Test MAE: 3133.8525 | Time: 22.4133
+INFO:__main__:Epoch [3] Train Loss: 1570.6493 | Train MAE: 1570.6487 | Val Loss: 3000.8566 | Val MAE: 3000.8560 | Test MAE: 2999.7498 | Time: 22.6544
+INFO:__main__:Epoch [4] Train Loss: 1431.5920 | Train MAE: 1431.5914 | Val Loss: 704.3253 | Val MAE: 704.3248 | Test MAE: 704.0954 | Time: 22.3824
+INFO:__main__:Epoch [5] Train Loss: 1262.9469 | Train MAE: 1262.9463 | Val Loss: 1979.3337 | Val MAE: 1979.3332 | Test MAE: 1978.6009 | Time: 23.1270
+INFO:__main__:Epoch [6] Train Loss: 1162.8557 | Train MAE: 1162.8551 | Val Loss: 225.2304 | Val MAE: 225.2299 | Test MAE: 225.1672 | Time: 23.4312
+INFO:__main__:Epoch [7] Train Loss: 1061.8037 | Train MAE: 1061.8032 | Val Loss: 1661.3241 | Val MAE: 1661.3236 | Test MAE: 1660.7435 | Time: 22.5963
+INFO:__main__:Epoch [8] Train Loss: 987.2936 | Train MAE: 987.2931 | Val Loss: 378.3239 | Val MAE: 378.3233 | Test MAE: 378.1701 | Time: 22.5221
+INFO:__main__:Epoch [9] Train Loss: 898.3248 | Train MAE: 898.3243 | Val Loss: 324.2907 | Val MAE: 324.2902 | Test MAE: 324.1560 | Time: 22.5234
+INFO:__main__:Epoch [10] Train Loss: 818.5931 | Train MAE: 818.5925 | Val Loss: 1408.9098 | Val MAE: 1408.9093 | Test MAE: 1408.4204 | Time: 23.3440
+INFO:__main__:Epoch [11] Train Loss: 762.3513 | Train MAE: 762.3508 | Val Loss: 869.3282 | Val MAE: 869.3276 | Test MAE: 868.9967 | Time: 22.1704
+INFO:__main__:Epoch [12] Train Loss: 715.1128 | Train MAE: 715.1123 | Val Loss: 357.9819 | Val MAE: 357.9814 | Test MAE: 357.8346 | Time: 23.3475
+INFO:__main__:Epoch [13] Train Loss: 677.5036 | Train MAE: 677.5030 | Val Loss: 491.3216 | Val MAE: 491.3211 | Test MAE: 491.1260 | Time: 22.3009
+INFO:__main__:Epoch [14] Train Loss: 638.6734 | Train MAE: 638.6728 | Val Loss: 728.7395 | Val MAE: 728.7390 | Test MAE: 728.4946 | Time: 23.3515
+INFO:__main__:Epoch [15] Train Loss: 595.7078 | Train MAE: 595.7072 | Val Loss: 570.5926 | Val MAE: 570.5920 | Test MAE: 570.4049 | Time: 23.4159
+INFO:__main__:Epoch [16] Train Loss: 558.1580 | Train MAE: 558.1574 | Val Loss: 597.8738 | Val MAE: 597.8732 | Test MAE: 597.6400 | Time: 25.7241
+INFO:__main__:Epoch [17] Train Loss: 1313.7209 | Train MAE: 1313.7203 | Val Loss: 651.8740 | Val MAE: 651.8734 | Test MAE: 651.6453 | Time: 22.3258
+INFO:__main__:Epoch [18] Train Loss: 1431.2381 | Train MAE: 1431.2375 | Val Loss: 609.1519 | Val MAE: 609.1513 | Test MAE: 608.9421 | Time: 22.8460
+INFO:__main__:Epoch [19] Train Loss: 925.8049 | Train MAE: 925.8043 | Val Loss: 1142.8509 | Val MAE: 1142.8504 | Test MAE: 1142.4507 | Time: 23.1410
+INFO:__main__:Epoch [20] Train Loss: 728.0096 | Train MAE: 728.0091 | Val Loss: 610.7072 | Val MAE: 610.7066 | Test MAE: 610.4991 | Time: 22.5596
+INFO:__main__:Epoch [21] Train Loss: 612.4522 | Train MAE: 612.4516 | Val Loss: 362.0055 | Val MAE: 362.0050 | Test MAE: 361.8619 | Time: 22.5756
+INFO:__main__:Epoch [22] Train Loss: 536.6006 | Train MAE: 536.6000 | Val Loss: 585.3812 | Val MAE: 585.3807 | Test MAE: 585.1567 | Time: 22.0680
+INFO:__main__:Epoch [23] Train Loss: 490.9341 | Train MAE: 490.9336 | Val Loss: 357.0764 | Val MAE: 357.0758 | Test MAE: 356.9346 | Time: 22.2946
+INFO:__main__:Epoch [24] Train Loss: 447.3712 | Train MAE: 447.3707 | Val Loss: 269.3041 | Val MAE: 269.3035 | Test MAE: 269.2201 | Time: 22.7051
+INFO:__main__:Epoch [25] Train Loss: 409.6109 | Train MAE: 409.6103 | Val Loss: 365.8879 | Val MAE: 365.8874 | Test MAE: 365.7696 | Time: 22.6248
+INFO:__main__:Epoch [26] Train Loss: 383.3509 | Train MAE: 383.3503 | Val Loss: 13.4323 | Val MAE: 13.4318 | Test MAE: 13.4439 | Time: 23.3833
+INFO:__main__:Epoch [27] Train Loss: 321.1211 | Train MAE: 321.1205 | Val Loss: 411.8309 | Val MAE: 411.8304 | Test MAE: 411.6661 | Time: 25.8335
+INFO:__main__:Epoch [28] Train Loss: 631.6477 | Train MAE: 631.6472 | Val Loss: 74.8691 | Val MAE: 74.8685 | Test MAE: 74.8201 | Time: 22.0777
+INFO:__main__:Epoch [29] Train Loss: 768.5679 | Train MAE: 768.5673 | Val Loss: 952.9700 | Val MAE: 952.9694 | Test MAE: 952.6476 | Time: 22.8246
+INFO:__main__:Epoch [30] Train Loss: 477.5662 | Train MAE: 477.5657 | Val Loss: 164.1429 | Val MAE: 164.1424 | Test MAE: 164.1035 | Time: 22.6448
+INFO:__main__:Epoch [31] Train Loss: 325.5109 | Train MAE: 325.5103 | Val Loss: 250.9475 | Val MAE: 250.9470 | Test MAE: 250.8768 | Time: 22.4828
+INFO:__main__:Epoch [32] Train Loss: 289.0549 | Train MAE: 289.0544 | Val Loss: 32.6447 | Val MAE: 32.6441 | Test MAE: 32.6523 | Time: 23.3129
+INFO:__main__:Epoch [33] Train Loss: 135.3458 | Train MAE: 135.3452 | Val Loss: 274.5599 | Val MAE: 274.5593 | Test MAE: 274.4806 | Time: 22.6034
+INFO:__main__:Epoch [34] Train Loss: 194.6137 | Train MAE: 194.6132 | Val Loss: 159.0021 | Val MAE: 159.0016 | Test MAE: 158.9237 | Time: 22.4370
+INFO:__main__:Epoch [35] Train Loss: 237.6546 | Train MAE: 237.6541 | Val Loss: 323.8873 | Val MAE: 323.8867 | Test MAE: 323.7897 | Time: 23.5521
+INFO:__main__:Epoch [36] Train Loss: 169.5561 | Train MAE: 169.5555 | Val Loss: 23.3360 | Val MAE: 23.3354 | Test MAE: 23.3461 | Time: 22.3166
+INFO:__main__:Epoch [37] Train Loss: 172.4520 | Train MAE: 172.4514 | Val Loss: 108.4350 | Val MAE: 108.4345 | Test MAE: 108.3744 | Time: 22.4464
+INFO:__main__:Epoch [38] Train Loss: 133.7474 | Train MAE: 133.7469 | Val Loss: 65.6399 | Val MAE: 65.6393 | Test MAE: 65.5953 | Time: 22.5072
+INFO:__main__:Epoch [39] Train Loss: 114.0315 | Train MAE: 114.0310 | Val Loss: 147.7332 | Val MAE: 147.7327 | Test MAE: 147.6999 | Time: 22.3837
+INFO:__main__:Epoch [40] Train Loss: 198.3978 | Train MAE: 198.3972 | Val Loss: 557.0199 | Val MAE: 557.0194 | Test MAE: 556.8393 | Time: 22.3809
+INFO:__main__:Epoch [41] Train Loss: 235.8944 | Train MAE: 235.8938 | Val Loss: 92.3704 | Val MAE: 92.3699 | Test MAE: 92.3571 | Time: 22.5695
+INFO:__main__:Epoch [42] Train Loss: 202.7295 | Train MAE: 202.7290 | Val Loss: 380.0655 | Val MAE: 380.0649 | Test MAE: 379.9077 | Time: 23.2971
+INFO:__main__:Epoch [43] Train Loss: 202.9355 | Train MAE: 202.9349 | Val Loss: 52.5644 | Val MAE: 52.5639 | Test MAE: 52.5243 | Time: 25.3655
+INFO:__main__:Epoch [44] Train Loss: 129.7426 | Train MAE: 129.7421 | Val Loss: 105.0658 | Val MAE: 105.0653 | Test MAE: 105.0068 | Time: 22.5357
+INFO:__main__:Epoch [45] Train Loss: 112.4057 | Train MAE: 112.4051 | Val Loss: 476.6775 | Val MAE: 476.6770 | Test MAE: 476.5261 | Time: 22.4683
+INFO:__main__:Epoch [46] Train Loss: 123.9122 | Train MAE: 123.9117 | Val Loss: 102.3411 | Val MAE: 102.3405 | Test MAE: 102.3244 | Time: 25.2212
+INFO:__main__:Epoch [47] Train Loss: 70.3162 | Train MAE: 70.3157 | Val Loss: 40.9373 | Val MAE: 40.9367 | Test MAE: 40.9013 | Time: 25.9021
+INFO:__main__:Epoch [48] Train Loss: 68.2911 | Train MAE: 68.2905 | Val Loss: 45.5341 | Val MAE: 45.5335 | Test MAE: 45.4964 | Time: 21.8492
+INFO:__main__:Epoch [49] Train Loss: 65.9684 | Train MAE: 65.9678 | Val Loss: 86.3341 | Val MAE: 86.3336 | Test MAE: 86.3233 | Time: 22.2340
+INFO:__main__:Epoch [50] Train Loss: 64.0831 | Train MAE: 64.0825 | Val Loss: 92.6467 | Val MAE: 92.6462 | Test MAE: 92.6337 | Time: 22.8210
+INFO:__main__:Epoch [51] Train Loss: 63.0525 | Train MAE: 63.0519 | Val Loss: 36.4794 | Val MAE: 36.4789 | Test MAE: 36.4449 | Time: 22.1449
+INFO:__main__:Epoch [52] Train Loss: 61.0468 | Train MAE: 61.0462 | Val Loss: 43.5760 | Val MAE: 43.5755 | Test MAE: 43.5391 | Time: 22.6405
+Epoch 00053: reducing learning rate of group 0 to 5.0000e-04.
+INFO:__main__:Epoch [53] Train Loss: 30.2685 | Train MAE: 30.2680 | Val Loss: 12.2674 | Val MAE: 12.2668 | Test MAE: 12.2832 | Time: 22.6278
+INFO:__main__:Epoch [54] Train Loss: 30.6177 | Train MAE: 30.6172 | Val Loss: 12.3260 | Val MAE: 12.3255 | Test MAE: 12.3418 | Time: 23.1923
+INFO:__main__:Epoch [55] Train Loss: 30.5140 | Train MAE: 30.5134 | Val Loss: 47.2140 | Val MAE: 47.2134 | Test MAE: 47.1757 | Time: 23.1315
+INFO:__main__:Epoch [56] Train Loss: 30.7750 | Train MAE: 30.7744 | Val Loss: 47.5533 | Val MAE: 47.5528 | Test MAE: 47.5149 | Time: 22.6806
+INFO:__main__:Epoch [57] Train Loss: 31.4331 | Train MAE: 31.4325 | Val Loss: 18.2751 | Val MAE: 18.2746 | Test MAE: 18.2888 | Time: 25.3842
+INFO:__main__:Epoch [58] Train Loss: 72.9869 | Train MAE: 72.9863 | Val Loss: 206.5385 | Val MAE: 206.5380 | Test MAE: 206.4438 | Time: 23.3953
+INFO:__main__:Epoch [59] Train Loss: 101.1810 | Train MAE: 101.1804 | Val Loss: 49.1576 | Val MAE: 49.1571 | Test MAE: 49.1209 | Time: 22.8431
+INFO:__main__:Epoch [60] Train Loss: 75.2543 | Train MAE: 75.2537 | Val Loss: 88.0367 | Val MAE: 88.0362 | Test MAE: 87.9863 | Time: 22.8459
+INFO:__main__:Epoch [61] Train Loss: 66.1845 | Train MAE: 66.1839 | Val Loss: 32.3484 | Val MAE: 32.3478 | Test MAE: 32.3545 | Time: 22.5686
+INFO:__main__:Epoch [62] Train Loss: 60.3064 | Train MAE: 60.3058 | Val Loss: 15.2307 | Val MAE: 15.2302 | Test MAE: 15.2428 | Time: 22.4649
+INFO:__main__:Epoch [63] Train Loss: 54.7394 | Train MAE: 54.7388 | Val Loss: 84.5189 | Val MAE: 84.5184 | Test MAE: 84.4699 | Time: 23.5925
+INFO:__main__:Epoch [64] Train Loss: 51.4415 | Train MAE: 51.4409 | Val Loss: 80.7512 | Val MAE: 80.7506 | Test MAE: 80.7035 | Time: 22.8681
+INFO:__main__:Epoch [65] Train Loss: 49.2648 | Train MAE: 49.2642 | Val Loss: 16.8425 | Val MAE: 16.8419 | Test MAE: 16.8536 | Time: 23.9552
+INFO:__main__:Epoch [66] Train Loss: 124.8863 | Train MAE: 124.8858 | Val Loss: 293.7412 | Val MAE: 293.7406 | Test MAE: 293.6557 | Time: 23.2990
+INFO:__main__:Epoch [67] Train Loss: 106.5454 | Train MAE: 106.5448 | Val Loss: 12.1802 | Val MAE: 12.1796 | Test MAE: 12.1411 | Time: 22.5614
+INFO:__main__:Epoch [68] Train Loss: 7.9200 | Train MAE: 7.9194 | Val Loss: 2.9891 | Val MAE: 2.9886 | Test MAE: 3.0050 | Time: 22.8332
+INFO:__main__:Epoch [69] Train Loss: 1.9582 | Train MAE: 1.9576 | Val Loss: 1.5283 | Val MAE: 1.5278 | Test MAE: 1.6215 | Time: 23.0028
+INFO:__main__:Epoch [70] Train Loss: 2.3718 | Train MAE: 2.3712 | Val Loss: 1.5013 | Val MAE: 1.5008 | Test MAE: 1.5984 | Time: 22.4290
+INFO:__main__:Epoch [71] Train Loss: 1.7141 | Train MAE: 1.7135 | Val Loss: 1.5608 | Val MAE: 1.5603 | Test MAE: 1.6494 | Time: 21.8684
+INFO:__main__:Epoch [72] Train Loss: 1.5908 | Train MAE: 1.5902 | Val Loss: 3.0101 | Val MAE: 3.0095 | Test MAE: 3.0330 | Time: 22.8106
+INFO:__main__:Epoch [73] Train Loss: 2.3003 | Train MAE: 2.2997 | Val Loss: 1.5435 | Val MAE: 1.5429 | Test MAE: 1.6335 | Time: 22.3991
+INFO:__main__:Epoch [74] Train Loss: 1.5483 | Train MAE: 1.5477 | Val Loss: 1.9028 | Val MAE: 1.9023 | Test MAE: 1.9773 | Time: 26.4768
+INFO:__main__:Epoch [75] Train Loss: 1.6594 | Train MAE: 1.6589 | Val Loss: 1.4658 | Val MAE: 1.4653 | Test MAE: 1.5721 | Time: 22.1293
+INFO:__main__:Epoch [76] Train Loss: 1.5817 | Train MAE: 1.5811 | Val Loss: 1.6896 | Val MAE: 1.6890 | Test MAE: 1.7579 | Time: 23.0373
+INFO:__main__:Epoch [77] Train Loss: 1.5368 | Train MAE: 1.5362 | Val Loss: 1.4392 | Val MAE: 1.4386 | Test MAE: 1.5506 | Time: 22.6100
+INFO:__main__:Epoch [78] Train Loss: 214.7916 | Train MAE: 214.7910 | Val Loss: 1.4955 | Val MAE: 1.4950 | Test MAE: 1.5936 | Time: 22.5055
+INFO:__main__:Epoch [79] Train Loss: 1.6596 | Train MAE: 1.6591 | Val Loss: 1.4875 | Val MAE: 1.4869 | Test MAE: 1.5869 | Time: 22.1176
+INFO:__main__:Epoch [80] Train Loss: 1.5105 | Train MAE: 1.5100 | Val Loss: 1.4823 | Val MAE: 1.4818 | Test MAE: 1.5825 | Time: 22.7619
+INFO:__main__:Epoch [81] Train Loss: 1.5177 | Train MAE: 1.5172 | Val Loss: 1.4780 | Val MAE: 1.4775 | Test MAE: 1.5788 | Time: 22.7291
+INFO:__main__:Epoch [82] Train Loss: 1.5057 | Train MAE: 1.5051 | Val Loss: 1.4743 | Val MAE: 1.4738 | Test MAE: 1.5757 | Time: 22.5245
+INFO:__main__:Epoch [83] Train Loss: 1.4988 | Train MAE: 1.4982 | Val Loss: 1.4711 | Val MAE: 1.4705 | Test MAE: 1.5730 | Time: 23.2559
+INFO:__main__:Epoch [84] Train Loss: 1.4922 | Train MAE: 1.4917 | Val Loss: 1.4680 | Val MAE: 1.4675 | Test MAE: 1.5706 | Time: 23.4535
+INFO:__main__:Epoch [85] Train Loss: 1.4978 | Train MAE: 1.4973 | Val Loss: 1.4652 | Val MAE: 1.4647 | Test MAE: 1.5684 | Time: 24.8860
+INFO:__main__:Epoch [86] Train Loss: 1.4916 | Train MAE: 1.4911 | Val Loss: 1.4626 | Val MAE: 1.4620 | Test MAE: 1.5663 | Time: 22.6534
+INFO:__main__:Epoch [87] Train Loss: 1.4958 | Train MAE: 1.4952 | Val Loss: 1.4601 | Val MAE: 1.4596 | Test MAE: 1.5645 | Time: 22.6180
+INFO:__main__:Epoch [88] Train Loss: 1.4916 | Train MAE: 1.4911 | Val Loss: 1.4580 | Val MAE: 1.4575 | Test MAE: 1.5630 | Time: 22.8263
+INFO:__main__:Epoch [89] Train Loss: 1.4884 | Train MAE: 1.4879 | Val Loss: 1.4561 | Val MAE: 1.4556 | Test MAE: 1.5615 | Time: 22.6868
+INFO:__main__:Epoch [90] Train Loss: 1.4872 | Train MAE: 1.4867 | Val Loss: 1.4543 | Val MAE: 1.4537 | Test MAE: 1.5602 | Time: 22.4416
+INFO:__main__:Epoch [91] Train Loss: 1.4848 | Train MAE: 1.4842 | Val Loss: 1.4527 | Val MAE: 1.4521 | Test MAE: 1.5590 | Time: 22.9933
+INFO:__main__:Epoch [92] Train Loss: 1.4863 | Train MAE: 1.4857 | Val Loss: 1.4511 | Val MAE: 1.4506 | Test MAE: 1.5579 | Time: 22.5341
+INFO:__main__:Epoch [93] Train Loss: 1.4773 | Train MAE: 1.4767 | Val Loss: 1.4497 | Val MAE: 1.4492 | Test MAE: 1.5570 | Time: 25.3101
+INFO:__main__:Epoch [94] Train Loss: 1.4788 | Train MAE: 1.4782 | Val Loss: 1.4485 | Val MAE: 1.4480 | Test MAE: 1.5563 | Time: 24.2528
+INFO:__main__:Epoch [95] Train Loss: 1.4774 | Train MAE: 1.4768 | Val Loss: 1.4475 | Val MAE: 1.4469 | Test MAE: 1.5556 | Time: 22.4082
+INFO:__main__:Epoch [96] Train Loss: 1.4732 | Train MAE: 1.4727 | Val Loss: 1.4464 | Val MAE: 1.4459 | Test MAE: 1.5550 | Time: 26.2873
+INFO:__main__:Epoch [97] Train Loss: 1.4824 | Train MAE: 1.4818 | Val Loss: 1.4455 | Val MAE: 1.4449 | Test MAE: 1.5544 | Time: 22.7687
+INFO:__main__:Epoch [98] Train Loss: 1.4785 | Train MAE: 1.4779 | Val Loss: 1.4447 | Val MAE: 1.4442 | Test MAE: 1.5539 | Time: 22.3608
+INFO:__main__:Epoch [99] Train Loss: 1.4793 | Train MAE: 1.4788 | Val Loss: 1.4440 | Val MAE: 1.4435 | Test MAE: 1.5535 | Time: 22.6095
+INFO:__main__:Epoch [100] Train Loss: 1.4769 | Train MAE: 1.4763 | Val Loss: 1.4435 | Val MAE: 1.4429 | Test MAE: 1.5532 | Time: 22.2646
+INFO:__main__:Epoch [101] Train Loss: 1.4765 | Train MAE: 1.4759 | Val Loss: 1.4428 | Val MAE: 1.4423 | Test MAE: 1.5528 | Time: 22.6312
+INFO:__main__:Epoch [102] Train Loss: 1.4763 | Train MAE: 1.4757 | Val Loss: 1.4423 | Val MAE: 1.4417 | Test MAE: 1.5525 | Time: 22.5551
+INFO:__main__:Epoch [103] Train Loss: 1.4780 | Train MAE: 1.4774 | Val Loss: 1.4418 | Val MAE: 1.4412 | Test MAE: 1.5522 | Time: 22.6629
+Epoch 00104: reducing learning rate of group 0 to 2.5000e-04.
+INFO:__main__:Epoch [104] Train Loss: 1.4735 | Train MAE: 1.4730 | Val Loss: 1.4416 | Val MAE: 1.4410 | Test MAE: 1.5521 | Time: 22.5769
+INFO:__main__:Epoch [105] Train Loss: 1.4739 | Train MAE: 1.4733 | Val Loss: 1.4414 | Val MAE: 1.4408 | Test MAE: 1.5519 | Time: 22.5385
+INFO:__main__:Epoch [106] Train Loss: 1.4754 | Train MAE: 1.4748 | Val Loss: 1.4412 | Val MAE: 1.4406 | Test MAE: 1.5518 | Time: 22.6072
