@@ -100,7 +100,7 @@ def get_net_params(config, args, device, params, DATASET_NAME):
     if args.gape_pooling is not None:
         net_params['gape_pooling'] = args.gape_pooling
     
-    if args.matrix_type is None:
+    if args.matrix_type is not None:
         net_params['matrix_type'] = args.matrix_type
 
     return net_params

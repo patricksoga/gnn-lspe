@@ -29,6 +29,7 @@ python3 main_ZINC_graph_regression.py --config tests/test-configs/GatedGCN_ZINC_
 #                 'hidden_dim': 59,
 #                 'in_feat_dropout': 0.0,
 #                 'lambda_loss': 0.1,
+#                 'matrix_type': 'RWK',
 #                 'n_gape': 1,
 #                 'out_dim': 59,
 #                 'pe_init': 'gape',
