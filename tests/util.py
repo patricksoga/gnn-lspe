@@ -30,7 +30,8 @@ def add_args(parser):
     parser.add_argument('--lambda_loss', help="Please give a value for lambda_loss")
     parser.add_argument('--pe_init', help="Please give a value for pe_init")
     parser.add_argument('--n_gape', help="Please give a value for n_gape")
-    parser.add_argument('--gape_pooling', help="Please give a value for gape_pooling")
+    parser.add_argument('--gape_pooling', help="Please give a value for gape_pooling", default="mean")
+    parser.add_argument('--matrix_type')
     return parser
 
 def get_parameters(config, args):
@@ -98,5 +99,8 @@ def get_net_params(config, args, device, params, DATASET_NAME):
         
     if args.gape_pooling is not None:
         net_params['gape_pooling'] = args.gape_pooling
+    
+    if args.matrix_type is None:
+        net_params['matrix_type'] = args.matrix_type
 
     return net_params

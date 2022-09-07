@@ -24,6 +24,10 @@ class PELayer(nn.Module):
         for pos_initial in self.pos_initials:
             nn.init.normal_(pos_initial)
 
+        if self.n_gape > 1:
+            self.gape_pool_vec = nn.Parameter(torch.Tensor(self.n_gape, 1), requires_grad=True)
+            nn.init.normal_(self.gape_pool_vec)
+
         # init transition weights
         self.pos_transitions = nn.ParameterList(
             nn.Parameter(torch.Tensor(self.pos_enc_dim, self.pos_enc_dim), requires_grad=False)
@@ -62,15 +66,20 @@ class PELayer(nn.Module):
         else:
             pos_encs = [g.ndata[f'pos_enc_{i}'] for i in range(self.n_gape)]
             # pos_encs = [self.embedding_pos_encs[i](pos_encs[i]) for i in range(self.n_gape)]
-            pos_enc_block = torch.stack(pos_encs, dim=0) # (n_gape, n_nodes, pos_enc_dim)
+            pos_encs = torch.stack(pos_encs, dim=0) # (n_gape, n_nodes, pos_enc_dim)
             # pos_enc_block = self.embedding_pos_enc(pos_enc_block) # (n_gape, n_nodes, hidden_dim)
             # count how many nans are in pos_enc_block
-            if self.gape_pooling == "mean":
-                pos_enc_block = torch.mean(pos_enc_block, 0, keepdim=False) # (n_nodes, hidden_dim)
-            elif self.gape_pooling == 'sum':
-                pos_enc_block = torch.sum(pos_enc_block, 0, keepdim=False)
-            elif self.gape_pooling == 'max':
-                pos_enc_block = torch.max(pos_enc_block, 0, keepdim=False)[0]
-            pe = pos_enc_block
+            # if self.gape_pooling == "mean":
+            #     pos_enc_block = torch.mean(pos_enc_block, 0, keepdim=False) # (n_nodes, hidden_dim)
+            # elif self.gape_pooling == 'sum':
+            #     pos_enc_block = torch.sum(pos_enc_block, 0, keepdim=False)
+            # elif self.gape_pooling == 'max':
+            #     pos_enc_block = torch.max(pos_enc_block, 0, keepdim=False)[0]
+            # pe = pos_enc_block
+            pos_encs = pos_encs.permute(1, 2, 0) # (n_nodes, pos_enc_dim, n_gape)
+            pos_encs = pos_encs @ self.gape_pool_vec
+            pos_encs = pos_encs.squeeze(2)
+            pe = self.embedding_pos_encs[0](pos_encs)
+
 
         return pe

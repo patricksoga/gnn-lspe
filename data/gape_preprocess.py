@@ -61,6 +61,29 @@ def automaton_encoding(g, transition_matrix, initial_vector, diag=False, matrix=
         A = g.adjacency_matrix_scipy(return_edge_ids=False).astype(float)
         N = sp.diags(dgl.backend.asnumpy(g.in_degrees()), dtype=float)
         mat = (A + N).todense()
+    elif matrix == 'RWK':
+        n = g.number_of_nodes()
+        A = g.adjacency_matrix(scipy_fmt="csr")
+        p_steps = int(n)
+        # p_steps = n
+        # p_steps = int(0.4*n)
+        # p_steps = int(0.7*n)
+        # p_steps = int(0.3*n)
+        # gamma = 1
+        gamma = 1
+
+        N = sp.diags(dgl.backend.asnumpy(g.in_degrees()).clip(1) ** -0.5, dtype=float)
+        I = sp.eye(n)
+        L = I - N * A * N
+
+        k_RW = I - gamma*L
+        k_RW_power = k_RW
+        for _ in range(p_steps - 1):
+            k_RW_power = k_RW_power.dot(k_RW)
+
+        k_RW_power = k_RW_power.toarray()
+        mat = k_RW_power
+
 
     initial_vector = torch.cat([initial_vector for _ in range(mat.shape[0])], dim=1)
     # if idx == 0:
