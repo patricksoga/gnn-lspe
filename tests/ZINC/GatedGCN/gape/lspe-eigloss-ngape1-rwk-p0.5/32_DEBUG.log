@@ -1,0 +1,10 @@
+2022-09-07 02:48:54,718:main_ZINC_graph_regression.py:443 -                 main(): {'seed': 41, 'epochs': 1000, 'batch_size': 128, 'init_lr': 0.001, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0.0, 'print_epoch_interval': 5, 'max_time': 12}
+2022-09-07 02:48:54,719:main_ZINC_graph_regression.py:444 -                 main(): {'L': 16, 'hidden_dim': 59, 'out_dim': 59, 'residual': True, 'edge_feat': True, 'readout': 'mean', 'in_feat_dropout': 0.0, 'dropout': 0.0, 'batch_norm': True, 'pos_enc_dim': 32, 'pe_init': 'gape', 'use_lapeig_loss': True, 'alpha_loss': 1, 'lambda_loss': 0.1, 'gpu_id': 0, 'batch_size': 128, 'n_gape': 1, 'gape_pooling': 'mean', 'matrix_type': 'RWK', 'device': device(type='cuda'), 'log_file': '/afs/crc.nd.edu/user/p/psoga/gnn-lspe/tests/ZINC/GatedGCN/gape/lspe-eigloss-ngape1-rwk-p0.5/32_DEBUG.log', 'num_atom_type': 28, 'num_bond_type': 4}
+2022-09-07 02:48:56,028:main_ZINC_graph_regression.py:467 -                 main(): Total number of parameters: 528009
+2022-09-07 02:48:56,061:main_ZINC_graph_regression.py:135 -   train_val_pipeline(): [!] Adding random automaton graph positional encoding (32).
+2022-09-07 02:49:49,719:main_ZINC_graph_regression.py:141 -   train_val_pipeline(): Time PE:53.69032120704651
+2022-09-07 02:49:49,725:main_ZINC_graph_regression.py:171 -   train_val_pipeline(): Training Graphs: 10000
+2022-09-07 02:49:49,725:main_ZINC_graph_regression.py:172 -   train_val_pipeline(): Validation Graphs: 10000
+2022-09-07 02:49:49,725:main_ZINC_graph_regression.py:173 -   train_val_pipeline(): Test Graphs: 10000
+2022-09-07 02:50:18,219:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [0] Train Loss: 0.7795 | Train MAE: 0.7789 | Val Loss: 1.0012 | Val MAE: 1.0005 | Test MAE: 1.0592 | Time: 28.4305
+2022-09-07 02:50:42,579:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [1] Train Loss: 0.5314 | Train MAE: 0.5306 | Val Loss: 1.8374 | Val MAE: 1.8364 | Test MAE: 1.8414 | Time: 24.3085
