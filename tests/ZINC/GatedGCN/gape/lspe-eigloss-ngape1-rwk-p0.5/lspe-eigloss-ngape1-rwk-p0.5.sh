@@ -1,18 +1,18 @@
 #!/bin/bash
-#$ -N GatedGCN_ZINC_lspe-eigloss-ngape1-rwk
+#$ -N GatedGCN_ZINC_lspe-eigloss-ngape1-rwk-p0.5
 #$ -q gpu
 #$ -l gpu_card=1
 #$ -t 1-2:1
 
 pos_enc_dim=(0 8 32)
-fname=$(pwd)/lspe-eigloss-ngape1-rwk_${SGE_TASK_ID}_${pos_enc_dim[${SGE_TASK_ID}]}_DEBUG.log
+fname=$(pwd)/lspe-eigloss-ngape1-rwk-p0.5_${SGE_TASK_ID}_${pos_enc_dim[${SGE_TASK_ID}]}_DEBUG.log
 touch $fname
 fsync -d 10 $fname &
 
 conda activate gnn
 cd /afs/crc.nd.edu/user/p/psoga/gnn-lspe
 
-python3 main_ZINC_graph_regression.py --config tests/test-configs/GatedGCN_ZINC_lspe-eigloss-ngape1-rwk.json --job_num ${SGE_TASK_ID} --pos_enc_dim ${pos_enc_dim[${SGE_TASK_ID}]} --log_file $fname
+python3 main_ZINC_graph_regression.py --config tests/test-configs/GatedGCN_ZINC_lspe-eigloss-ngape1-rwk-p0.5.json --job_num ${SGE_TASK_ID} --pos_enc_dim ${pos_enc_dim[${SGE_TASK_ID}]} --log_file $fname
 
 
 # {'dataset': 'ZINC',
@@ -37,7 +37,7 @@ python3 main_ZINC_graph_regression.py --config tests/test-configs/GatedGCN_ZINC_
 #                 'readout': 'mean',
 #                 'residual': True,
 #                 'use_lapeig_loss': True},
-#  'out_dir': 'out/ZINC_graph_regression_lspe-eigloss-ngape1-rwk',
+#  'out_dir': 'out/ZINC_graph_regression_lspe-eigloss-ngape1-rwk-p0.5',
 #  'params': {'batch_size': 128,
 #             'epochs': 1000,
 #             'init_lr': 0.001,
@@ -52,4 +52,4 @@ python3 main_ZINC_graph_regression.py --config tests/test-configs/GatedGCN_ZINC_
 
 
 # Generated with command:
-#python3 configure_tests.py --config ../configs/GatedGCN_ZINC_LSPE_withLapEigLoss.json --pe_init gape --n_gape 1 --job_note lspe-eigloss-ngape1-rwk --param_values 8 32 --matrix_type RWK
+#python3 configure_tests.py --config ../configs/GatedGCN_ZINC_LSPE_withLapEigLoss.json --pe_init gape --n_gape 1 --job_note lspe-eigloss-ngape1-rwk-p0.5 --param_values 8 32 --matrix_type RWK

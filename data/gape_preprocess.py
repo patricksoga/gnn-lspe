@@ -64,7 +64,7 @@ def automaton_encoding(g, transition_matrix, initial_vector, diag=False, matrix=
     elif matrix == 'RWK':
         n = g.number_of_nodes()
         A = g.adjacency_matrix(scipy_fmt="csr")
-        p_steps = int(n)
+        p_steps = int(0.5*n)
         # p_steps = n
         # p_steps = int(0.4*n)
         # p_steps = int(0.7*n)
