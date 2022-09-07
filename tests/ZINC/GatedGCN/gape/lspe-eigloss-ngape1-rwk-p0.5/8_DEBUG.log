@@ -2,3 +2,11 @@
 2022-09-07 03:01:39,304:main_ZINC_graph_regression.py:444 -                 main(): {'L': 16, 'hidden_dim': 59, 'out_dim': 59, 'residual': True, 'edge_feat': True, 'readout': 'mean', 'in_feat_dropout': 0.0, 'dropout': 0.0, 'batch_norm': True, 'pos_enc_dim': 8, 'pe_init': 'gape', 'use_lapeig_loss': True, 'alpha_loss': 1, 'lambda_loss': 0.1, 'gpu_id': 0, 'batch_size': 128, 'n_gape': 1, 'gape_pooling': 'mean', 'matrix_type': 'RWK', 'device': device(type='cuda'), 'log_file': '/afs/crc.nd.edu/user/p/psoga/gnn-lspe/tests/ZINC/GatedGCN/gape/lspe-eigloss-ngape1-rwk-p0.5/8_DEBUG.log', 'num_atom_type': 28, 'num_bond_type': 4}
 2022-09-07 03:01:40,691:main_ZINC_graph_regression.py:467 -                 main(): Total number of parameters: 521337
 2022-09-07 03:01:40,726:main_ZINC_graph_regression.py:135 -   train_val_pipeline(): [!] Adding random automaton graph positional encoding (8).
+2022-09-07 03:02:27,743:main_ZINC_graph_regression.py:141 -   train_val_pipeline(): Time PE:47.051066637039185
+2022-09-07 03:02:27,766:main_ZINC_graph_regression.py:171 -   train_val_pipeline(): Training Graphs: 10000
+2022-09-07 03:02:27,766:main_ZINC_graph_regression.py:172 -   train_val_pipeline(): Validation Graphs: 10000
+2022-09-07 03:02:27,766:main_ZINC_graph_regression.py:173 -   train_val_pipeline(): Test Graphs: 10000
+2022-09-07 03:02:51,224:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [0] Train Loss: 771.2471 | Train MAE: 771.2464 | Val Loss: 792.5318 | Val MAE: 792.5311 | Test MAE: 792.2241 | Time: 23.4537
+2022-09-07 03:03:14,725:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [1] Train Loss: 289.1547 | Train MAE: 289.1539 | Val Loss: 137.0357 | Val MAE: 137.0350 | Test MAE: 136.9855 | Time: 23.4466
+2022-09-07 03:03:37,806:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [2] Train Loss: 95.7851 | Train MAE: 95.7844 | Val Loss: 133.4983 | Val MAE: 133.4976 | Test MAE: 133.4256 | Time: 23.0219
+2022-09-07 03:04:00,119:main_ZINC_graph_regression.py:216 -   train_val_pipeline(): Epoch [3] Train Loss: 245.9303 | Train MAE: 245.9296 | Val Loss: 351.1886 | Val MAE: 351.1879 | Test MAE: 351.0109 | Time: 22.2594
