@@ -1,0 +1,61 @@
+WARNING:root:The OGB package is out of date. Your version is 1.3.3, while the latest version is 1.3.4.
+INFO:__main__:{'seed': 41, 'epochs': 1000, 'batch_size': 128, 'init_lr': 0.001, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 25, 'min_lr': 1e-06, 'weight_decay': 0.0, 'print_epoch_interval': 5, 'max_time': 12}
+INFO:__main__:{'L': 16, 'hidden_dim': 59, 'out_dim': 59, 'residual': True, 'edge_feat': True, 'readout': 'mean', 'in_feat_dropout': 0.0, 'dropout': 0.0, 'batch_norm': True, 'pos_enc_dim': 6, 'pe_init': 'gape', 'use_lapeig_loss': True, 'alpha_loss': 1, 'lambda_loss': 0.1, 'gpu_id': 0, 'batch_size': 128, 'n_gape': 1, 'gape_pooling': 'mean', 'matrix_type': 'RWK', 'device': device(type='cuda'), 'log_file': '/afs/crc.nd.edu/user/p/psoga/gnn-lspe/tests/ZINC/GatedGCN/gape/lspe-eigloss-ngape1-rwk/6_DEBUG.log', 'num_atom_type': 28, 'num_bond_type': 4}
+INFO:__main__:Total number of parameters: 520833
+INFO:__main__:[!] Adding random automaton graph positional encoding (6).
+INFO:__main__:Time PE:64.55591583251953
+INFO:__main__:Training Graphs: 10000
+INFO:__main__:Validation Graphs: 10000
+INFO:__main__:Test Graphs: 10000
+cuda available with GPU: NVIDIA GeForce GTX 1080 Ti
+[I] Loading dataset ZINC...
+train, test, val sizes : 10000 1000 1000
+[I] Finished loading.
+[I] Data load time: 10.4713s
+MODEL DETAILS:
+
+MODEL/Total parameters: GatedGCN 520833
+INFO:__main__:Epoch [0] Train Loss: 1177.6096 | Train MAE: 1177.6090 | Val Loss: 897.5205 | Val MAE: 897.5198 | Test MAE: 897.0795 | Time: 22.4866
+INFO:__main__:Epoch [1] Train Loss: 667.5730 | Train MAE: 667.5724 | Val Loss: 486.9888 | Val MAE: 486.9882 | Test MAE: 486.6677 | Time: 22.3850
+INFO:__main__:Epoch [2] Train Loss: 500.8027 | Train MAE: 500.8021 | Val Loss: 1196.6151 | Val MAE: 1196.6144 | Test MAE: 1196.3504 | Time: 26.4764
+INFO:__main__:Epoch [3] Train Loss: 451.9158 | Train MAE: 451.9152 | Val Loss: 187.0198 | Val MAE: 187.0192 | Test MAE: 187.0481 | Time: 22.6348
+INFO:__main__:Epoch [4] Train Loss: 173.0428 | Train MAE: 173.0421 | Val Loss: 118.2648 | Val MAE: 118.2641 | Test MAE: 118.3017 | Time: 22.3003
+INFO:__main__:Epoch [5] Train Loss: 113.3563 | Train MAE: 113.3556 | Val Loss: 118.7027 | Val MAE: 118.7020 | Test MAE: 118.6637 | Time: 22.4126
+INFO:__main__:Epoch [6] Train Loss: 99.3727 | Train MAE: 99.3721 | Val Loss: 127.1822 | Val MAE: 127.1816 | Test MAE: 127.2060 | Time: 22.6401
+INFO:__main__:Epoch [7] Train Loss: 87.8231 | Train MAE: 87.8224 | Val Loss: 37.2152 | Val MAE: 37.2146 | Test MAE: 37.1239 | Time: 22.2108
+INFO:__main__:Epoch [8] Train Loss: 76.3774 | Train MAE: 76.3768 | Val Loss: 42.2363 | Val MAE: 42.2357 | Test MAE: 42.2096 | Time: 22.3326
+INFO:__main__:Epoch [9] Train Loss: 79.0476 | Train MAE: 79.0470 | Val Loss: 287.5521 | Val MAE: 287.5515 | Test MAE: 287.4693 | Time: 23.9695
+INFO:__main__:Epoch [10] Train Loss: 71.6186 | Train MAE: 71.6179 | Val Loss: 8.6508 | Val MAE: 8.6502 | Test MAE: 8.5518 | Time: 22.3557
+INFO:__main__:Epoch [11] Train Loss: 34.5299 | Train MAE: 34.5292 | Val Loss: 9.5476 | Val MAE: 9.5470 | Test MAE: 9.4714 | Time: 25.3443
+INFO:__main__:Epoch [12] Train Loss: 13.7928 | Train MAE: 13.7921 | Val Loss: 13.7239 | Val MAE: 13.7233 | Test MAE: 13.6955 | Time: 21.8890
+INFO:__main__:Epoch [13] Train Loss: 9.6395 | Train MAE: 9.6389 | Val Loss: 7.9937 | Val MAE: 7.9930 | Test MAE: 7.9788 | Time: 23.1286
+INFO:__main__:Epoch [14] Train Loss: 7.6977 | Train MAE: 7.6970 | Val Loss: 11.1149 | Val MAE: 11.1143 | Test MAE: 11.1175 | Time: 22.8850
+INFO:__main__:Epoch [15] Train Loss: 5.1961 | Train MAE: 5.1954 | Val Loss: 5.1419 | Val MAE: 5.1413 | Test MAE: 5.1522 | Time: 22.5194
+INFO:__main__:Epoch [16] Train Loss: 1.9134 | Train MAE: 1.9128 | Val Loss: 2.3167 | Val MAE: 2.3160 | Test MAE: 2.3676 | Time: 22.4597
+INFO:__main__:Epoch [17] Train Loss: 2.2758 | Train MAE: 2.2752 | Val Loss: 2.6059 | Val MAE: 2.6053 | Test MAE: 2.6419 | Time: 22.2453
+INFO:__main__:Epoch [18] Train Loss: 1.8976 | Train MAE: 1.8970 | Val Loss: 1.8289 | Val MAE: 1.8283 | Test MAE: 1.8744 | Time: 22.4620
+INFO:__main__:Epoch [19] Train Loss: 1.6174 | Train MAE: 1.6168 | Val Loss: 1.6635 | Val MAE: 1.6629 | Test MAE: 1.7415 | Time: 22.1764
+INFO:__main__:Epoch [20] Train Loss: 1.5754 | Train MAE: 1.5747 | Val Loss: 2.8626 | Val MAE: 2.8620 | Test MAE: 2.7682 | Time: 22.2388
+INFO:__main__:Epoch [21] Train Loss: 2.2608 | Train MAE: 2.2601 | Val Loss: 1.4861 | Val MAE: 1.4855 | Test MAE: 1.5875 | Time: 25.9975
+INFO:__main__:Epoch [22] Train Loss: 1.5737 | Train MAE: 1.5731 | Val Loss: 1.5633 | Val MAE: 1.5626 | Test MAE: 1.6461 | Time: 22.3329
+INFO:__main__:Epoch [23] Train Loss: 1.5340 | Train MAE: 1.5334 | Val Loss: 1.8803 | Val MAE: 1.8796 | Test MAE: 1.9555 | Time: 22.5292
+INFO:__main__:Epoch [24] Train Loss: 1.5683 | Train MAE: 1.5676 | Val Loss: 1.5385 | Val MAE: 1.5378 | Test MAE: 1.6300 | Time: 22.5079
+INFO:__main__:Epoch [25] Train Loss: 1.6022 | Train MAE: 1.6015 | Val Loss: 1.4549 | Val MAE: 1.4543 | Test MAE: 1.5605 | Time: 22.7159
+INFO:__main__:Epoch [26] Train Loss: 1.5084 | Train MAE: 1.5078 | Val Loss: 1.4918 | Val MAE: 1.4912 | Test MAE: 1.5917 | Time: 22.5274
+INFO:__main__:Epoch [27] Train Loss: 1.5414 | Train MAE: 1.5407 | Val Loss: 1.4923 | Val MAE: 1.4917 | Test MAE: 1.5907 | Time: 22.3637
+INFO:__main__:Epoch [28] Train Loss: 1.5534 | Train MAE: 1.5527 | Val Loss: 1.6198 | Val MAE: 1.6192 | Test MAE: 1.7027 | Time: 22.1990
+INFO:__main__:Epoch [29] Train Loss: 1.5647 | Train MAE: 1.5640 | Val Loss: 1.4428 | Val MAE: 1.4422 | Test MAE: 1.5533 | Time: 25.7914
+INFO:__main__:Epoch [30] Train Loss: 1.5106 | Train MAE: 1.5100 | Val Loss: 1.4858 | Val MAE: 1.4852 | Test MAE: 1.5879 | Time: 22.4720
+INFO:__main__:Epoch [31] Train Loss: 1.5040 | Train MAE: 1.5033 | Val Loss: 1.5287 | Val MAE: 1.5281 | Test MAE: 1.6219 | Time: 22.4774
+Traceback (most recent call last):
+  File "/afs/crc.nd.edu/user/p/psoga/gnn-lspe/main_ZINC_graph_regression.py", line 477, in <module>
+    main()    
+  File "/afs/crc.nd.edu/user/p/psoga/gnn-lspe/main_ZINC_graph_regression.py", line 468, in main
+    train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs, logger)
+  File "/afs/crc.nd.edu/user/p/psoga/gnn-lspe/main_ZINC_graph_regression.py", line 224, in train_val_pipeline
+    torch.save(model.state_dict(), '{}.pkl'.format(ckpt_dir + "/epoch_" + str(epoch)))
+  File "/afs/crc.nd.edu/user/p/psoga/.conda/envs/gnn/lib/python3.10/site-packages/torch/serialization.py", line 376, in save
+    with _open_file_like(f, 'wb') as opened_file:
+  File "/afs/crc.nd.edu/user/p/psoga/.conda/envs/gnn/lib/python3.10/site-packages/torch/serialization.py", line 214, in __exit__
+    self.file_like.close()
+OSError: [Errno 5] Input/output error
